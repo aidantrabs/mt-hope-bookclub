@@ -12,15 +12,15 @@ export const Home = () => {
   return (
     <div>
       <section className="py-20 md:py-32 px-4 text-center">
-        <h1 className="font-serif text-4xl md:text-6xl font-bold text-[#3d2c2e] mb-4">
+        <h1 className="font-serif text-4xl md:text-6xl font-bold text-brown mb-4">
           mt. hope book club
         </h1>
-        <p className="text-lg md:text-xl text-[#6b5658] max-w-xl mx-auto mb-8">
+        <p className="text-lg md:text-xl text-brown-light max-w-xl mx-auto mb-8">
           a community of readers in trinidad & tobago — one book at a time.
         </p>
         <Link
           to="/books"
-          className="inline-block bg-[#c26a4a] text-white px-8 py-3 rounded-lg font-medium hover:bg-[#a8583d] transition-colors"
+          className="inline-block bg-terracotta text-white px-8 py-3 rounded-lg font-medium hover:bg-terracotta-dark transition-colors"
         >
           explore our books
         </Link>
@@ -30,14 +30,14 @@ export const Home = () => {
         <LoadingSpinner />
       ) : currentBook ? (
         <section className="max-w-4xl mx-auto px-4 pb-16">
-          <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#3d2c2e] mb-8 text-center">
+          <h2 className="font-serif text-2xl md:text-3xl font-bold text-brown mb-8 text-center">
             we're currently reading
           </h2>
           <Link
             to={`/books/${currentBook.id}`}
-            className="group block bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden md:flex"
+            className="group block bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden md:flex"
           >
-            <div className="md:w-48 aspect-[2/3] md:aspect-auto bg-[#e8dcc8] overflow-hidden shrink-0">
+            <div className="md:w-48 aspect-[2/3] md:aspect-auto bg-sand overflow-hidden shrink-0">
               <img
                 src={currentBook.coverImageUrl || "https://placehold.co/200x300/e8dcc8/3d2c2e?text=no+cover"}
                 alt={`cover of ${currentBook.title}`}
@@ -45,21 +45,21 @@ export const Home = () => {
               />
             </div>
             <div className="p-6 flex flex-col justify-center">
-              <span className="inline-block text-xs font-medium text-white bg-[#2d5a3d] px-3 py-1 rounded-full self-start mb-3">
+              <span className="inline-block text-xs font-medium text-white bg-green px-3 py-1 rounded-full self-start mb-3">
                 reading now
               </span>
-              <h3 className="font-serif text-2xl font-bold text-[#3d2c2e] group-hover:text-[#c26a4a] transition-colors">
+              <h3 className="font-serif text-2xl font-bold text-brown group-hover:text-terracotta transition-colors">
                 {currentBook.title}
               </h3>
-              <p className="text-[#6b5658] mt-1">by {currentBook.author}</p>
-              <p className="text-sm text-[#8a7a6c] mt-3 line-clamp-2">{currentBook.summary}</p>
+              <p className="text-brown-light mt-1">by {currentBook.author}</p>
+              <p className="text-sm text-brown-muted mt-3 line-clamp-2">{currentBook.summary}</p>
             </div>
           </Link>
         </section>
       ) : null}
 
       <section className="max-w-6xl mx-auto px-4 pb-16">
-        <h2 className="font-serif text-2xl md:text-3xl font-bold text-[#3d2c2e] mb-8 text-center">
+        <h2 className="font-serif text-2xl md:text-3xl font-bold text-brown mb-8 text-center">
           recently completed
         </h2>
         {loadingCompleted ? (
@@ -81,7 +81,7 @@ export const Home = () => {
             ))}
           </div>
         ) : (
-          <p className="text-center text-[#6b5658]">no completed books yet.</p>
+          <p className="text-center text-brown-light">no completed books yet.</p>
         )}
       </section>
     </div>

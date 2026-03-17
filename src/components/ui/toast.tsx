@@ -43,9 +43,9 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 const typeStyles: Record<ToastType, string> = {
-  success: "bg-[#2d5a3d] text-white",
+  success: "bg-green text-white",
   error: "bg-red-600 text-white",
-  warning: "bg-[#d4a853] text-[#3d2c2e]",
+  warning: "bg-gold text-brown",
 };
 
 const ToastItem = ({ toast, onDismiss }: { toast: Toast; onDismiss: (id: number) => void }) => {
@@ -56,6 +56,7 @@ const ToastItem = ({ toast, onDismiss }: { toast: Toast; onDismiss: (id: number)
 
   return (
     <div
+      role="alert"
       className={`px-4 py-3 rounded-lg shadow-lg text-sm font-medium flex items-center justify-between gap-3 animate-[slideUp_0.2s_ease-out] ${typeStyles[toast.type]}`}
     >
       <span>{toast.message}</span>

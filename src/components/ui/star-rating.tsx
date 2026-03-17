@@ -8,7 +8,7 @@ export const StarRating = ({ rating, max = 5 }: StarRatingProps) => {
     const filled = rating >= i + 1;
     const half = !filled && rating >= i + 0.5;
     return (
-      <span key={i} className="text-[#d4a853]">
+      <span key={i} className="text-gold">
         {filled ? "\u2605" : half ? "\u00BD" : "\u2606"}
       </span>
     );
@@ -17,7 +17,7 @@ export const StarRating = ({ rating, max = 5 }: StarRatingProps) => {
   return (
     <span className="inline-flex items-center gap-0.5 text-sm" aria-label={`${rating} out of ${max} stars`}>
       {stars}
-      <span className="ml-1 text-[#6b5658] text-xs">({rating})</span>
+      <span className="ml-1 text-brown-light text-xs">({rating})</span>
     </span>
   );
 };

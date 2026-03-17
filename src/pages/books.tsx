@@ -15,17 +15,17 @@ export const Books = () => {
   if (error) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-12 text-center">
-        <p className="text-[#c26a4a]">{error}</p>
+        <p className="text-terracotta">{error}</p>
       </div>
     );
   }
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-12">
-      <h1 className="font-serif text-3xl md:text-4xl font-bold text-[#3d2c2e] mb-2">
+      <h1 className="font-serif text-3xl md:text-4xl font-bold text-brown mb-2">
         our books
       </h1>
-      <p className="text-[#6b5658] mb-8">
+      <p className="text-brown-light mb-8">
         every book we've read, discussed, and debated.
       </p>
 
@@ -35,8 +35,8 @@ export const Books = () => {
             onClick={() => setGenreFilter(null)}
             className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${
               !genreFilter
-                ? "bg-[#3d2c2e] text-white"
-                : "bg-white text-[#6b5658] border border-[#e8dcc8] hover:border-[#c26a4a]"
+                ? "bg-brown text-white"
+                : "bg-white text-brown-light border border-sand hover:border-terracotta"
             }`}
           >
             all
@@ -47,8 +47,8 @@ export const Books = () => {
               onClick={() => setGenreFilter(genre)}
               className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${
                 genreFilter === genre
-                  ? "bg-[#3d2c2e] text-white"
-                  : "bg-white text-[#6b5658] border border-[#e8dcc8] hover:border-[#c26a4a]"
+                  ? "bg-brown text-white"
+                  : "bg-white text-brown-light border border-sand hover:border-terracotta"
               }`}
             >
               {genre}
@@ -74,7 +74,7 @@ export const Books = () => {
           ))}
         </div>
       ) : (
-        <p className="text-center text-[#6b5658] py-16">no books found.</p>
+        <p className="text-center text-brown-light py-16">no books found.</p>
       )}
     </div>
   );

@@ -3,7 +3,7 @@ import { Header } from "./header.tsx";
 import { Footer } from "./footer.tsx";
 
 export const PageWrapper = () => (
-  <div className="min-h-screen flex flex-col bg-[#fdf6ec] text-[#3d2c2e]">
+  <div className="min-h-screen flex flex-col bg-cream text-brown">
     <Header />
     <main className="flex-1">
       <Outlet />

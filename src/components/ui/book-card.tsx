@@ -26,9 +26,9 @@ export const BookCard = ({
 }: BookCardProps) => (
   <Link
     to={`/books/${id}`}
-    className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col"
+    className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col"
   >
-    <div className="aspect-[2/3] bg-[#e8dcc8] overflow-hidden">
+    <div className="aspect-[2/3] bg-sand overflow-hidden">
       <img
         src={coverImageUrl || fallbackCover}
         alt={`cover of ${title}`}
@@ -38,17 +38,17 @@ export const BookCard = ({
         }}
       />
     </div>
-    <div className="p-4 flex flex-col flex-1">
-      <span className="text-xs font-medium text-[#2d5a3d] bg-[#e8f0eb] px-2 py-0.5 rounded-full self-start mb-2">
+    <article className="p-4 flex flex-col flex-1">
+      <span className="text-xs font-medium text-green bg-green/10 px-2 py-0.5 rounded-full self-start mb-2">
         {genre}
       </span>
-      <h3 className="font-serif font-bold text-[#3d2c2e] group-hover:text-[#c26a4a] transition-colors leading-tight">
+      <h3 className="font-serif font-bold text-brown group-hover:text-terracotta transition-colors leading-tight">
         {title}
       </h3>
-      <p className="text-sm text-[#6b5658] mt-1">{author}</p>
+      <p className="text-sm text-brown-light mt-1">{author}</p>
       <div className="mt-auto pt-3 flex items-center justify-between">
         <StarRating rating={ratingClub} />
-        <span className="text-xs text-[#8a7a6c]">
+        <span className="text-xs text-brown-muted">
           {status === "currently-reading"
             ? "reading now"
             : dateFinalDiscussion.toLocaleDateString("en-TT", {
@@ -57,6 +57,6 @@ export const BookCard = ({
               })}
         </span>
       </div>
-    </div>
+    </article>
   </Link>
 );

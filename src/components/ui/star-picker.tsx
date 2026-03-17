@@ -15,14 +15,14 @@ export const StarPicker = ({ value, onChange }: StarPickerProps) => {
         type="button"
         onClick={() => onChange(starValue)}
         className={`text-2xl transition-colors cursor-pointer ${
-          filled ? "text-[#d4a853]" : "text-[#e8dcc8]"
+          filled ? "text-gold" : "text-sand"
         } ${isHalf ? "-mr-1.5" : "mr-1"}`}
         aria-label={`${starValue} stars`}
       >
         {isHalf ? (
-          <span className="inline-block w-3 overflow-hidden">★</span>
+          <span className="inline-block w-3 overflow-hidden">{"\u2605"}</span>
         ) : (
-          <span className="inline-block">★</span>
+          <span className="inline-block">{"\u2605"}</span>
         )}
       </button>
     );
@@ -31,7 +31,7 @@ export const StarPicker = ({ value, onChange }: StarPickerProps) => {
   return (
     <div className="flex items-center">
       <div className="flex items-center">{stars}</div>
-      <span className="ml-3 text-sm font-medium text-[#3d2c2e]">{value || "—"}</span>
+      <span className="ml-3 text-sm font-medium text-brown">{value || "\u2014"}</span>
     </div>
   );
 };

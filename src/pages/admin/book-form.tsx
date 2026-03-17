@@ -194,10 +194,10 @@ export const BookForm = () => {
   if (isEdit && (bookError || !book) && !bookLoading) {
     return (
       <div className="max-w-2xl mx-auto px-4 py-12 text-center">
-        <p className="text-[#c26a4a] mb-4">this book doesn't exist — it may have been deleted.</p>
+        <p className="text-terracotta mb-4">this book doesn't exist — it may have been deleted.</p>
         <button
           onClick={() => navigate("/admin/dashboard")}
-          className="text-sm text-[#6b5658] hover:text-[#c26a4a] transition-colors"
+          className="text-sm text-brown-light hover:text-terracotta transition-colors"
         >
           &larr; back to dashboard
         </button>
@@ -207,7 +207,7 @@ export const BookForm = () => {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
-      <h1 className="font-serif text-2xl md:text-3xl font-bold text-[#3d2c2e] mb-8">
+      <h1 className="font-serif text-2xl md:text-3xl font-bold text-brown mb-8">
         {isEdit ? "edit book" : "add book"}
       </h1>
 
@@ -220,13 +220,13 @@ export const BookForm = () => {
       {blocker.state === "blocked" && (
         <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
           <div className="bg-white rounded-xl p-6 max-w-sm w-full shadow-lg">
-            <p className="text-[#3d2c2e] font-medium mb-4">
+            <p className="text-brown font-medium mb-4">
               you have unsaved changes — are you sure you want to leave?
             </p>
             <div className="flex gap-3 justify-end">
               <button
                 onClick={() => blocker.reset()}
-                className="px-4 py-2 rounded-lg bg-gray-100 text-[#3d2c2e] hover:bg-gray-200 transition-colors font-medium text-sm"
+                className="px-4 py-2 rounded-lg bg-gray-100 text-brown hover:bg-gray-200 transition-colors font-medium text-sm"
               >
                 stay
               </button>
@@ -243,7 +243,7 @@ export const BookForm = () => {
 
       <form onSubmit={handleSubmit} className="space-y-10">
         <fieldset className="space-y-4">
-          <legend className="font-serif text-lg font-bold text-[#3d2c2e] mb-2">basics</legend>
+          <legend className="font-serif text-lg font-bold text-brown mb-2">basics</legend>
 
           <Field label="title" error={errors.title} field="title">
             <input
@@ -292,7 +292,7 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-serif text-lg font-bold text-[#3d2c2e] mb-2">dates</legend>
+          <legend className="font-serif text-lg font-bold text-brown mb-2">dates</legend>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Field label="date started" error={errors.dateStarted} field="dateStarted">
@@ -321,7 +321,7 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-serif text-lg font-bold text-[#3d2c2e] mb-2">details</legend>
+          <legend className="font-serif text-lg font-bold text-brown mb-2">details</legend>
 
           <Field label="summary" error={errors.summary} field="summary">
             <textarea
@@ -357,7 +357,7 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-serif text-lg font-bold text-[#3d2c2e] mb-2">ratings</legend>
+          <legend className="font-serif text-lg font-bold text-brown mb-2">ratings</legend>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Field label="club rating" error={errors.ratingClub} field="ratingClub">
@@ -371,7 +371,7 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-serif text-lg font-bold text-[#3d2c2e] mb-2">favourite quotes</legend>
+          <legend className="font-serif text-lg font-bold text-brown mb-2">favourite quotes</legend>
           <ListField
             items={form.favoriteQuotes}
             onChange={(items) => update("favoriteQuotes", items)}
@@ -382,7 +382,7 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-serif text-lg font-bold text-[#3d2c2e] mb-2">discussion highlights</legend>
+          <legend className="font-serif text-lg font-bold text-brown mb-2">discussion highlights</legend>
           <ListField
             items={form.discussionHighlights}
             onChange={(items) => update("discussionHighlights", items)}
@@ -393,7 +393,7 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-serif text-lg font-bold text-[#3d2c2e] mb-2">extras</legend>
+          <legend className="font-serif text-lg font-bold text-brown mb-2">extras</legend>
 
           <Field label="would we recommend it?" error={errors.wouldRecommend} field="wouldRecommend">
             <div className="flex gap-3">
@@ -402,8 +402,8 @@ export const BookForm = () => {
                 onClick={() => update("wouldRecommend", true)}
                 className={`flex-1 py-3 rounded-lg font-medium text-sm transition-colors border ${
                   form.wouldRecommend
-                    ? "bg-[#2d5a3d] text-white border-[#2d5a3d]"
-                    : "bg-white text-[#6b5658] border-[#e8dcc8] hover:border-[#2d5a3d]"
+                    ? "bg-green text-white border-green"
+                    : "bg-white text-brown-light border-sand hover:border-green"
                 }`}
               >
                 👍 yes
@@ -413,8 +413,8 @@ export const BookForm = () => {
                 onClick={() => update("wouldRecommend", false)}
                 className={`flex-1 py-3 rounded-lg font-medium text-sm transition-colors border ${
                   !form.wouldRecommend
-                    ? "bg-[#c26a4a] text-white border-[#c26a4a]"
-                    : "bg-white text-[#6b5658] border-[#e8dcc8] hover:border-[#c26a4a]"
+                    ? "bg-terracotta text-white border-terracotta"
+                    : "bg-white text-brown-light border-sand hover:border-terracotta"
                 }`}
               >
                 👎 no
@@ -441,7 +441,7 @@ export const BookForm = () => {
               className={inputClass(errors.coverImageUrl)}
             />
             {form.coverImageUrl && (
-              <div className="mt-3 w-24 aspect-[2/3] rounded-lg overflow-hidden bg-[#e8dcc8]">
+              <div className="mt-3 w-24 aspect-[2/3] rounded-lg overflow-hidden bg-sand">
                 <img
                   src={form.coverImageUrl}
                   alt="cover preview"
@@ -455,18 +455,18 @@ export const BookForm = () => {
           </Field>
         </fieldset>
 
-        <div className="flex gap-3 pt-4 border-t border-[#e8dcc8]">
+        <div className="flex gap-3 pt-4 border-t border-sand">
           <button
             type="submit"
             disabled={submitting}
-            className="bg-[#c26a4a] text-white px-8 py-2.5 rounded-lg font-medium hover:bg-[#a8583d] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-terracotta text-white px-8 py-2.5 rounded-lg font-medium hover:bg-terracotta-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {submitting ? "saving..." : isEdit ? "update book" : "add book"}
           </button>
           <button
             type="button"
             onClick={() => navigate("/admin/dashboard")}
-            className="px-6 py-2.5 rounded-lg bg-gray-100 text-[#3d2c2e] hover:bg-gray-200 transition-colors font-medium"
+            className="px-6 py-2.5 rounded-lg bg-gray-100 text-brown hover:bg-gray-200 transition-colors font-medium"
           >
             cancel
           </button>
@@ -477,8 +477,8 @@ export const BookForm = () => {
 };
 
 const inputClass = (error?: string) =>
-  `w-full px-3 py-2 rounded-lg border bg-white text-[#3d2c2e] focus:outline-none focus:ring-2 focus:ring-[#c26a4a] focus:border-transparent ${
-    error ? "border-red-400" : "border-[#e8dcc8]"
+  `w-full px-3 py-2 rounded-lg border bg-white text-brown focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent ${
+    error ? "border-red-400" : "border-sand"
   }`;
 
 type FieldProps = {
@@ -490,7 +490,7 @@ type FieldProps = {
 
 const Field = ({ label, error, field, children }: FieldProps) => (
   <div data-field={field}>
-    <label className="block text-sm font-medium text-[#3d2c2e] mb-1">{label}</label>
+    <label className="block text-sm font-medium text-brown mb-1">{label}</label>
     {children}
     {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
   </div>
@@ -524,7 +524,7 @@ const ListField = ({ items, onChange, placeholder, error, field }: ListFieldProp
             <button
               type="button"
               onClick={() => onChange(items.filter((_, j) => j !== i))}
-              className="text-[#8a7a6c] hover:text-red-600 transition-colors px-2 shrink-0"
+              className="text-brown-muted hover:text-red-600 transition-colors px-2 shrink-0"
               aria-label="remove"
             >
               ✕
@@ -536,7 +536,7 @@ const ListField = ({ items, onChange, placeholder, error, field }: ListFieldProp
     <button
       type="button"
       onClick={() => onChange([...items, ""])}
-      className="text-sm text-[#c26a4a] hover:underline mt-2"
+      className="text-sm text-terracotta hover:underline mt-2"
     >
       + add another
     </button>

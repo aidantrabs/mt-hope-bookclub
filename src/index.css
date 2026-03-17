@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif: "Lora", serif;
+  --font-sans: "Source Sans 3", sans-serif;
+  --color-cream: #fdf6ec;
+  --color-brown: #3d2c2e;
+  --color-brown-light: #6b5658;
+  --color-brown-muted: #8a7a6c;
+  --color-terracotta: #c26a4a;
+  --color-terracotta-dark: #a8583d;
+  --color-green: #2d5a3d;
+  --color-gold: #d4a853;
+  --color-sand: #e8dcc8;
+  --color-warm-white: #fef9f0;
+}
+
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -9,4 +24,17 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-brown);
+  background-color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--color-gold);
+  color: var(--color-brown);
 }

@@ -45,7 +45,7 @@ export const Login = () => {
 
   return (
     <div className="max-w-sm mx-auto px-4 py-20">
-      <h1 className="font-serif text-2xl font-bold text-[#3d2c2e] mb-6 text-center">admin login</h1>
+      <h1 className="font-serif text-2xl font-bold text-brown mb-6 text-center">admin login</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
@@ -55,7 +55,7 @@ export const Login = () => {
         )}
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-[#3d2c2e] mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-brown mb-1">
             email
           </label>
           <input
@@ -63,14 +63,14 @@ export const Login = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg border border-[#e8dcc8] bg-white text-[#3d2c2e] focus:outline-none focus:ring-2 focus:ring-[#c26a4a] focus:border-transparent"
+            className="w-full px-3 py-2 rounded-lg border border-sand bg-white text-brown focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent"
             placeholder="you@example.com"
             autoComplete="email"
           />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-[#3d2c2e] mb-1">
+          <label htmlFor="password" className="block text-sm font-medium text-brown mb-1">
             password
           </label>
           <input
@@ -78,7 +78,7 @@ export const Login = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg border border-[#e8dcc8] bg-white text-[#3d2c2e] focus:outline-none focus:ring-2 focus:ring-[#c26a4a] focus:border-transparent"
+            className="w-full px-3 py-2 rounded-lg border border-sand bg-white text-brown focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent"
             placeholder="••••••••"
             autoComplete="current-password"
           />
@@ -87,7 +87,7 @@ export const Login = () => {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-[#c26a4a] text-white py-2.5 rounded-lg font-medium hover:bg-[#a8583d] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-terracotta text-white py-2.5 rounded-lg font-medium hover:bg-terracotta-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {submitting ? "signing in..." : "sign in"}
         </button>
