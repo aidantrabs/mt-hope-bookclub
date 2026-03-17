@@ -10,7 +10,7 @@ export const bookSchema = z.object({
   title: nonEmptyString,
   author: nonEmptyString,
   genre: nonEmptyString,
-  coverImageUrl: z.string().url(),
+  coverImageUrl: z.union([z.string().url(), z.literal("")]),
   dateStarted: z.coerce.date(),
   dateFinalDiscussion: z.coerce.date(),
   summary: nonEmptyString.pipe(z.string().min(20, "must be at least 20 characters")),
