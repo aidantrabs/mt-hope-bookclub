@@ -15,7 +15,13 @@
     "noUncheckedIndexedAccess": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@pages": ["./src/pages"],
+      "@layout": ["./src/components/layout"],
+      "@utils/*": ["./src/utils/*"],
+      "@lib/*": ["./src/lib/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@components/*": ["./src/components/*"]
     }
   },
   "include": ["src", "vite-env.d.ts"]
