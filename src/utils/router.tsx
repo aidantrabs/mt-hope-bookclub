@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { PageWrapper } from "@layout";
+import { PageWrapper, ProtectedRoute } from "@layout";
 import { Home, Books, BookDetail, About, Contact, Login, Dashboard, BookForm } from "@pages";
 
 export const Router = () => (
@@ -12,9 +12,11 @@ export const Router = () => (
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/admin" element={<Login />} />
-        <Route path="/admin/dashboard" element={<Dashboard />} />
-        <Route path="/admin/new" element={<BookForm />} />
-        <Route path="/admin/edit/:id" element={<BookForm />} />
+        <Route element={<ProtectedRoute />}>
+          <Route path="/admin/dashboard" element={<Dashboard />} />
+          <Route path="/admin/new" element={<BookForm />} />
+          <Route path="/admin/edit/:id" element={<BookForm />} />
+        </Route>
       </Route>
     </Routes>
   </BrowserRouter>
