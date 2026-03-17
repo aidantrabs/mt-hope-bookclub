@@ -1,47 +1,30 @@
-import { Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+import { useBook } from "@hooks/use-book.ts";
 import { StarRating } from "@/components/ui/star-rating.tsx";
 import { QuoteBlock } from "@/components/ui/quote-block.tsx";
-
-export const BookDetail = () => (
-  <div className="max-w-4xl mx-auto px-4 py-12">
-    <Link
-      to="/books"
-      className="inline-flex items-center text-sm text-[#6b5658] hover:text-[#c26a4a] transition-colors mb-8"
-    >
-      &larr; back to books
-    </Link>
-
-    <p className="text-center text-[#6b5658] py-16">
-      book details will appear here once connected to the database.
-    </p>
-  </div>
-);
+import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 
 const fallbackCover = "https://placehold.co/300x450/e8dcc8/3d2c2e?text=no+cover";
 
-type BookDetailContentProps = {
-  book: {
-    title: string;
-    author: string;
-    genre: string;
-    coverImageUrl: string;
-    dateStarted: Date;
-    dateFinalDiscussion: Date;
-    summary: string;
-    ratingClub: number;
-    ratingGoodreads: number;
-    favoriteQuotes: string[];
-    discussionHighlights: string[];
-    funFact: string;
-    wouldRecommend: boolean;
-    nextRead: string;
-    status: string;
-  };
-};
+const formatDate = (d: Date) =>
+  d.toLocaleDateString("en-TT", { month: "long", day: "numeric", year: "numeric" });
 
-export const BookDetailContent = ({ book }: BookDetailContentProps) => {
-  const formatDate = (d: Date) =>
-    d.toLocaleDateString("en-TT", { month: "long", day: "numeric", year: "numeric" });
+export const BookDetail = () => {
+  const { id } = useParams();
+  const { book, loading, error } = useBook(id);
+
+  if (loading) return <LoadingSpinner />;
+
+  if (error || !book) {
+    return (
+      <div className="max-w-4xl mx-auto px-4 py-12 text-center">
+        <p className="text-[#c26a4a] mb-4">{error ?? "book not found"}</p>
+        <Link to="/books" className="text-sm text-[#6b5658] hover:text-[#c26a4a] transition-colors">
+          &larr; back to books
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
@@ -77,11 +60,9 @@ export const BookDetailContent = ({ book }: BookDetailContentProps) => {
           <span className="inline-block text-xs font-medium text-[#2d5a3d] bg-[#e8f0eb] px-3 py-1 rounded-full mb-4">
             {book.genre}
           </span>
-
           <div className="text-sm text-[#6b5658] mb-6">
             <p>{formatDate(book.dateStarted)} &mdash; {formatDate(book.dateFinalDiscussion)}</p>
           </div>
-
           <p className="text-[#3d2c2e] leading-relaxed">{book.summary}</p>
         </div>
       </div>
@@ -89,13 +70,13 @@ export const BookDetailContent = ({ book }: BookDetailContentProps) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         <div className="bg-white rounded-xl p-6 shadow-sm text-center">
           <h3 className="text-xs font-medium uppercase tracking-wider text-[#8a7a6c] mb-2">our rating</h3>
-          <div className="text-2xl mb-1">
+          <div className="text-2xl">
             <StarRating rating={book.ratingClub} />
           </div>
         </div>
         <div className="bg-white rounded-xl p-6 shadow-sm text-center">
           <h3 className="text-xs font-medium uppercase tracking-wider text-[#8a7a6c] mb-2">goodreads</h3>
-          <div className="text-2xl mb-1">
+          <div className="text-2xl">
             <StarRating rating={book.ratingGoodreads} />
           </div>
         </div>
@@ -133,7 +114,6 @@ export const BookDetailContent = ({ book }: BookDetailContentProps) => {
           <h3 className="text-xs font-medium uppercase tracking-wider text-[#8a7a6c] mb-2">fun fact</h3>
           <p className="text-[#3d2c2e]">{book.funFact}</p>
         </div>
-
         <div className="bg-[#fef9f0] rounded-xl p-6 border border-[#e8dcc8] flex flex-col items-center justify-center">
           <h3 className="text-xs font-medium uppercase tracking-wider text-[#8a7a6c] mb-3">
             would we recommend it?

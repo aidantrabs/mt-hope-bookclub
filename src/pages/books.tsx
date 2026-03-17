@@ -1,14 +1,81 @@
-export const Books = () => (
-  <div className="max-w-6xl mx-auto px-4 py-12">
-    <h1 className="font-serif text-3xl md:text-4xl font-bold text-[#3d2c2e] mb-2">
-      our books
-    </h1>
-    <p className="text-[#6b5658] mb-10">
-      every book we've read, discussed, and debated.
-    </p>
+import { useState } from "react";
+import { useBooks } from "@hooks/use-books.ts";
+import { BookCard } from "@/components/ui/book-card.tsx";
+import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 
-    <p className="text-center text-[#6b5658] py-16">
-      books will appear here once connected to the database.
-    </p>
-  </div>
-);
+export const Books = () => {
+  const { books, loading, error } = useBooks();
+  const [genreFilter, setGenreFilter] = useState<string | null>(null);
+
+  const genres = [...new Set(books.map((b) => b.genre))];
+  const filtered = genreFilter ? books.filter((b) => b.genre === genreFilter) : books;
+
+  if (loading) return <LoadingSpinner />;
+
+  if (error) {
+    return (
+      <div className="max-w-6xl mx-auto px-4 py-12 text-center">
+        <p className="text-[#c26a4a]">{error}</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-6xl mx-auto px-4 py-12">
+      <h1 className="font-serif text-3xl md:text-4xl font-bold text-[#3d2c2e] mb-2">
+        our books
+      </h1>
+      <p className="text-[#6b5658] mb-8">
+        every book we've read, discussed, and debated.
+      </p>
+
+      {genres.length > 1 && (
+        <div className="flex flex-wrap gap-2 mb-8">
+          <button
+            onClick={() => setGenreFilter(null)}
+            className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${
+              !genreFilter
+                ? "bg-[#3d2c2e] text-white"
+                : "bg-white text-[#6b5658] border border-[#e8dcc8] hover:border-[#c26a4a]"
+            }`}
+          >
+            all
+          </button>
+          {genres.map((genre) => (
+            <button
+              key={genre}
+              onClick={() => setGenreFilter(genre)}
+              className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${
+                genreFilter === genre
+                  ? "bg-[#3d2c2e] text-white"
+                  : "bg-white text-[#6b5658] border border-[#e8dcc8] hover:border-[#c26a4a]"
+              }`}
+            >
+              {genre}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {filtered.length > 0 ? (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+          {filtered.map((book) => (
+            <BookCard
+              key={book.id}
+              id={book.id}
+              title={book.title}
+              author={book.author}
+              genre={book.genre}
+              coverImageUrl={book.coverImageUrl}
+              ratingClub={book.ratingClub}
+              dateFinalDiscussion={book.dateFinalDiscussion}
+              status={book.status}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-[#6b5658] py-16">no books found.</p>
+      )}
+    </div>
+  );
+};
