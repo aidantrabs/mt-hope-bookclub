@@ -5,6 +5,7 @@ import { db } from "@lib/firebase.ts";
 import { useBooks } from "@hooks/use-books.ts";
 import { useAuth } from "@hooks/use-auth.ts";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
+import { useToast } from "@/components/ui/toast.tsx";
 
 const statusColors: Record<string, string> = {
   "currently-reading": "bg-green-100 text-green-800",
@@ -21,18 +22,18 @@ const statusLabels: Record<string, string> = {
 export const Dashboard = () => {
   const { books, loading, error } = useBooks();
   const { signOut } = useAuth();
+  const { toast } = useToast();
   const [deleting, setDeleting] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
-  const [deleteError, setDeleteError] = useState<string | null>(null);
 
   const handleDelete = async (id: string) => {
     setDeleting(id);
-    setDeleteError(null);
     try {
       await deleteDoc(doc(db, "books", id));
       setConfirmDelete(null);
+      toast("book deleted.", "success");
     } catch {
-      setDeleteError("failed to delete. try again.");
+      toast("failed to delete. try again.", "error");
     } finally {
       setDeleting(null);
     }
@@ -66,12 +67,6 @@ export const Dashboard = () => {
       {error && (
         <div className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-lg border border-red-200 mb-6">
           {error}
-        </div>
-      )}
-
-      {deleteError && (
-        <div className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-lg border border-red-200 mb-6">
-          {deleteError}
         </div>
       )}
 

@@ -6,6 +6,7 @@ import { bookFormSchema } from "@lib/schemas.ts";
 import { useBook } from "@hooks/use-book.ts";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { StarPicker } from "@/components/ui/star-picker.tsx";
+import { useToast } from "@/components/ui/toast.tsx";
 
 type FieldErrors = Record<string, string>;
 
@@ -43,7 +44,7 @@ export const BookForm = () => {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [dirty, setDirty] = useState(false);
   const [prefilled, setPrefilled] = useState(false);
-  const firstErrorRef = useRef<HTMLElement | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (!isEdit || !book || prefilled) return;
@@ -174,6 +175,7 @@ export const BookForm = () => {
       }
 
       setDirty(false);
+      toast(isEdit ? "book updated!" : "book added!", "success");
       navigate("/admin/dashboard", { replace: true });
     } catch (err) {
       const message = (err as Error).message ?? "";
