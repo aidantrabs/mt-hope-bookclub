@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate, useBlocker } from "react-router-dom";
 import { collection, addDoc, doc, updateDoc, Timestamp } from "firebase/firestore";
 import { db } from "@lib/firebase.ts";
@@ -7,6 +7,7 @@ import { useBook } from "@hooks/use-book.ts";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { StarPicker } from "@/components/ui/star-picker.tsx";
 import { useToast } from "@/components/ui/toast.tsx";
+import { searchBookCover } from "@lib/open-library.ts";
 
 type FieldErrors = Record<string, string>;
 
@@ -44,6 +45,7 @@ export const BookForm = () => {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [dirty, setDirty] = useState(false);
   const [prefilled, setPrefilled] = useState(false);
+  const [fetchingCover, setFetchingCover] = useState(false);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -433,13 +435,33 @@ export const BookForm = () => {
           </Field>
 
           <Field label="cover image url" error={errors.coverImageUrl} field="coverImageUrl">
-            <input
-              type="text"
-              value={form.coverImageUrl}
-              onChange={(e) => update("coverImageUrl", e.target.value)}
-              placeholder="https://covers.openlibrary.org/b/isbn/..."
-              className={inputClass(errors.coverImageUrl)}
-            />
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={form.coverImageUrl}
+                onChange={(e) => update("coverImageUrl", e.target.value)}
+                placeholder="https://covers.openlibrary.org/b/isbn/..."
+                className={inputClass(errors.coverImageUrl)}
+              />
+              <button
+                type="button"
+                disabled={!form.title.trim() || fetchingCover}
+                onClick={async () => {
+                  setFetchingCover(true);
+                  const result = await searchBookCover(form.title);
+                  if (result) {
+                    update("coverImageUrl", result.coverUrl);
+                    toast("cover found!", "success");
+                  } else {
+                    toast("no cover found for that title.", "warning");
+                  }
+                  setFetchingCover(false);
+                }}
+                className="shrink-0 text-xs px-3 py-2 rounded-lg bg-sand text-brown hover:bg-sand/80 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {fetchingCover ? "searching..." : "auto-fetch"}
+              </button>
+            </div>
             {form.coverImageUrl && (
               <div className="mt-3 w-24 aspect-[2/3] rounded-lg overflow-hidden bg-sand">
                 <img
