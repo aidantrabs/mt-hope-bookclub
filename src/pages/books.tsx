@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useBooks } from "@hooks/use-books.ts";
 import { BookCard } from "@/components/ui/book-card.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
+import { Animate } from "@/components/ui/animate.tsx";
 
 export const Books = () => {
   const { books, loading, error } = useBooks();
@@ -25,12 +26,12 @@ export const Books = () => {
     <div>
       <section className="bg-bg-light py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-5">
-          <h1 className="font-display text-4xl md:text-5xl text-text-primary mb-8">
+          <h1 className="font-display text-4xl md:text-5xl text-text-primary mb-8 hero-fade-in">
             discover
           </h1>
 
           {genres.length > 1 && (
-            <div>
+            <div className="hero-fade-in-delay-1">
               <button
                 onClick={() => setFiltersOpen(!filtersOpen)}
                 className="md:hidden flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-3"
@@ -85,18 +86,19 @@ export const Books = () => {
         <div className="max-w-6xl mx-auto px-5">
           {filtered.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
-              {filtered.map((book) => (
-                <BookCard
-                  key={book.id}
-                  id={book.id}
-                  title={book.title}
-                  author={book.author}
-                  genre={book.genre}
-                  coverImageUrl={book.coverImageUrl}
-                  ratingClub={book.ratingClub}
-                  status={book.status}
-                  variant="dark"
-                />
+              {filtered.map((book, i) => (
+                <Animate key={book.id} delay={i * 80}>
+                  <BookCard
+                    id={book.id}
+                    title={book.title}
+                    author={book.author}
+                    genre={book.genre}
+                    coverImageUrl={book.coverImageUrl}
+                    ratingClub={book.ratingClub}
+                    status={book.status}
+                    variant="dark"
+                  />
+                </Animate>
               ))}
             </div>
           ) : (

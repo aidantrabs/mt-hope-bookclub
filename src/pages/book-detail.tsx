@@ -5,6 +5,7 @@ import { QuoteBlock } from "@/components/ui/quote-block.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { Pill } from "@/components/ui/pill.tsx";
+import { Animate } from "@/components/ui/animate.tsx";
 
 const fallbackCover = "https://placehold.co/300x450/e5e2dd/1a2332?text=no+cover";
 
@@ -32,7 +33,7 @@ export const BookDetail = () => {
     <div>
       <section className="bg-bg-light py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-5">
-          <nav className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-10 flex items-center gap-2">
+          <nav className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-10 flex items-center gap-2 hero-fade-in">
             <Link to="/" className="hover:text-text-primary transition-colors">home</Link>
             <span className="text-border">/</span>
             <Link to="/discover" className="hover:text-text-primary transition-colors">discover</Link>
@@ -41,7 +42,7 @@ export const BookDetail = () => {
           </nav>
 
           <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 mb-16">
-            <div className="aspect-[2/3] rounded-2xl overflow-hidden shadow-lg">
+            <div className="aspect-[2/3] rounded-2xl overflow-hidden shadow-lg hero-fade-in">
               <img
                 src={book.coverImageUrl || fallbackCover}
                 alt={`cover of ${book.title}`}
@@ -51,7 +52,7 @@ export const BookDetail = () => {
             </div>
 
             <div className="flex flex-col justify-center">
-              <div className="flex flex-wrap items-center gap-2 mb-4">
+              <div className="flex flex-wrap items-center gap-2 mb-4 hero-fade-in-delay-1">
                 <Pill>{book.genre}</Pill>
                 {book.status === "currently-reading" && (
                   <span className="rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.15em] font-semibold bg-highlight text-white">
@@ -60,45 +61,51 @@ export const BookDetail = () => {
                 )}
               </div>
 
-              <h1 className="font-display text-3xl md:text-4xl text-text-primary mb-3 leading-tight">
+              <h1 className="font-display text-3xl md:text-4xl text-text-primary mb-3 leading-tight hero-fade-in-delay-1">
                 {book.title}
               </h1>
-              <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-1">
+              <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-1 hero-fade-in-delay-2">
                 {book.author}
               </p>
-              <p className="text-sm text-text-secondary mb-6">
+              <p className="text-sm text-text-secondary mb-6 hero-fade-in-delay-2">
                 {formatDate(book.dateStarted)} &mdash; {formatDate(book.dateFinalDiscussion)}
               </p>
-              <p className="text-text-primary leading-relaxed">{book.summary}</p>
+              <p className="text-text-primary leading-relaxed hero-fade-in-delay-3">{book.summary}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-5 mb-16">
-            <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border text-center">
-              <SectionLabel>our rating</SectionLabel>
-              <div className="text-xl mt-3">
-                <StarRating rating={book.ratingClub} size={18} />
+          <Animate>
+            <div className="grid grid-cols-2 gap-5 mb-16">
+              <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border text-center">
+                <SectionLabel>our rating</SectionLabel>
+                <div className="text-xl mt-3">
+                  <StarRating rating={book.ratingClub} size={18} />
+                </div>
+              </div>
+              <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border text-center">
+                <SectionLabel>goodreads</SectionLabel>
+                <div className="text-xl mt-3">
+                  <StarRating rating={book.ratingGoodreads} size={18} />
+                </div>
               </div>
             </div>
-            <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border text-center">
-              <SectionLabel>goodreads</SectionLabel>
-              <div className="text-xl mt-3">
-                <StarRating rating={book.ratingGoodreads} size={18} />
-              </div>
-            </div>
-          </div>
+          </Animate>
 
           {book.favoriteQuotes.length > 0 && (
-            <div className="mb-16">
-              <h2 className="font-display text-xl md:text-2xl text-text-primary mb-6">
-                favourite quotes
-              </h2>
-              <div className="space-y-4">
-                {book.favoriteQuotes.map((quote, i) => (
-                  <QuoteBlock key={i} quote={quote} />
-                ))}
+            <Animate>
+              <div className="mb-16">
+                <h2 className="font-display text-xl md:text-2xl text-text-primary mb-6">
+                  favourite quotes
+                </h2>
+                <div className="space-y-4">
+                  {book.favoriteQuotes.map((quote, i) => (
+                    <Animate key={i} delay={i * 100}>
+                      <QuoteBlock quote={quote} />
+                    </Animate>
+                  ))}
+                </div>
               </div>
-            </div>
+            </Animate>
           )}
         </div>
       </section>
@@ -106,46 +113,49 @@ export const BookDetail = () => {
       <section className="bg-bg-dark py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-5">
           {book.discussionHighlights.length > 0 && (
-            <div className="mb-14">
+            <Animate className="mb-14">
               <SectionLabel dark>discussion highlights</SectionLabel>
               <ul className="mt-5 space-y-3">
                 {book.discussionHighlights.map((highlight, i) => (
-                  <li
-                    key={i}
+                  <Animate key={i} as="li" delay={i * 80}
                     className="bg-bg-card-dark rounded-xl p-5 border-l-3 border-accent text-text-on-dark leading-relaxed text-[15px]"
                   >
                     {highlight}
-                  </li>
+                  </Animate>
                 ))}
               </ul>
-            </div>
+            </Animate>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
-            <div className="bg-bg-card-dark rounded-2xl p-6 border border-border-dark">
-              <SectionLabel dark>fun fact</SectionLabel>
-              <p className="text-text-on-dark leading-relaxed mt-3 text-[15px]">{book.funFact}</p>
+          <Animate>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
+              <div className="bg-bg-card-dark rounded-2xl p-6 border border-border-dark">
+                <SectionLabel dark>fun fact</SectionLabel>
+                <p className="text-text-on-dark leading-relaxed mt-3 text-[15px]">{book.funFact}</p>
+              </div>
+              <div className="bg-bg-card-dark rounded-2xl p-6 border border-border-dark flex flex-col items-center justify-center text-center">
+                <SectionLabel dark>would we recommend it?</SectionLabel>
+                <span className="text-5xl my-4">
+                  {book.wouldRecommend ? "\uD83D\uDC4D" : "\uD83D\uDC4E"}
+                </span>
+                <span className={`text-sm font-semibold rounded-full px-5 py-1.5 ${
+                  book.wouldRecommend
+                    ? "bg-recommend-yes/15 text-highlight-soft"
+                    : "bg-recommend-no/15 text-accent-soft"
+                }`}>
+                  {book.wouldRecommend ? "yes, read this!" : "not our favorite"}
+                </span>
+              </div>
             </div>
-            <div className="bg-bg-card-dark rounded-2xl p-6 border border-border-dark flex flex-col items-center justify-center text-center">
-              <SectionLabel dark>would we recommend it?</SectionLabel>
-              <span className="text-5xl my-4">
-                {book.wouldRecommend ? "\uD83D\uDC4D" : "\uD83D\uDC4E"}
-              </span>
-              <span className={`text-sm font-semibold rounded-full px-5 py-1.5 ${
-                book.wouldRecommend
-                  ? "bg-recommend-yes/15 text-highlight-soft"
-                  : "bg-recommend-no/15 text-accent-soft"
-              }`}>
-                {book.wouldRecommend ? "yes, read this!" : "not our favorite"}
-              </span>
-            </div>
-          </div>
+          </Animate>
 
           {book.nextRead && (
-            <div className="text-center pt-8 border-t border-border-dark">
-              <SectionLabel dark>up next</SectionLabel>
-              <p className="font-display text-xl text-text-on-dark mt-2">{book.nextRead}</p>
-            </div>
+            <Animate>
+              <div className="text-center pt-8 border-t border-border-dark">
+                <SectionLabel dark>up next</SectionLabel>
+                <p className="font-display text-xl text-text-on-dark mt-2">{book.nextRead}</p>
+              </div>
+            </Animate>
           )}
         </div>
       </section>

@@ -4,6 +4,7 @@ import { BookCard } from "@/components/ui/book-card.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { HeroIllustration } from "@/components/ui/hero-illustration.tsx";
+import { Animate } from "@/components/ui/animate.tsx";
 
 export const Home = () => {
   const { books: currentlyReading, loading: loadingCurrent } = useBooks({ status: "currently-reading" });
@@ -16,16 +17,22 @@ export const Home = () => {
       <section className="relative bg-bg-light overflow-hidden pb-0 min-h-[calc(100vh-4rem)] flex flex-col">
         <div className="max-w-6xl mx-auto px-5 pt-4 md:pt-6 pb-36 md:pb-44 flex-1 flex flex-col justify-start">
           <div className="flex flex-col items-center text-center">
-            <HeroIllustration className="w-72 md:w-96 h-auto mb-4" />
+            <div className="hero-fade-in">
+              <HeroIllustration className="w-72 md:w-96 h-auto mb-4" />
+            </div>
 
-            <SectionLabel>trinidad & tobago · est. 2025</SectionLabel>
-            <h1 className="font-display text-4xl md:text-6xl text-text-primary mt-3 mb-4 leading-[1.08]">
-              mt. hope book club
-            </h1>
-            <p className="text-base text-text-secondary max-w-md mb-6 leading-relaxed">
+            <div className="hero-fade-in-delay-1">
+              <SectionLabel>trinidad & tobago · est. 2025</SectionLabel>
+              <h1 className="font-display text-4xl md:text-6xl text-text-primary mt-3 mb-4 leading-[1.08]">
+                mt. hope book club
+              </h1>
+            </div>
+
+            <p className="text-base text-text-secondary max-w-md mb-6 leading-relaxed hero-fade-in-delay-2">
               turning pages. exploring worlds. a community of readers discovering one book at a time.
             </p>
-            <div className="flex items-center gap-3">
+
+            <div className="flex items-center gap-3 hero-fade-in-delay-3">
               <Link
                 to="/discover"
                 className="bg-accent text-white rounded-full px-7 py-2.5 text-sm font-semibold uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors"
@@ -60,7 +67,7 @@ export const Home = () => {
           {loadingCurrent ? (
             <LoadingSpinner />
           ) : currentBook ? (
-            <div className="mb-14">
+            <Animate className="mb-14">
               <SectionLabel dark>currently reading</SectionLabel>
               <Link
                 to={`/discover/${currentBook.id}`}
@@ -88,35 +95,38 @@ export const Home = () => {
                   </p>
                 </div>
               </Link>
-            </div>
+            </Animate>
           ) : null}
 
-          <div className="flex items-center justify-between mb-8">
-            <SectionLabel dark>recent reads</SectionLabel>
-            <Link
-              to="/discover"
-              className="text-[11px] uppercase tracking-[0.2em] font-semibold text-accent hover:text-accent-hover transition-colors"
-            >
-              see all &rarr;
-            </Link>
-          </div>
+          <Animate>
+            <div className="flex items-center justify-between mb-8">
+              <SectionLabel dark>recent reads</SectionLabel>
+              <Link
+                to="/discover"
+                className="text-[11px] uppercase tracking-[0.2em] font-semibold text-accent hover:text-accent-hover transition-colors"
+              >
+                see all &rarr;
+              </Link>
+            </div>
+          </Animate>
 
           {loadingCompleted ? (
             <LoadingSpinner />
           ) : completed.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
-              {completed.map((book) => (
-                <BookCard
-                  key={book.id}
-                  id={book.id}
-                  title={book.title}
-                  author={book.author}
-                  genre={book.genre}
-                  coverImageUrl={book.coverImageUrl}
-                  ratingClub={book.ratingClub}
-                  status={book.status}
-                  variant="dark"
-                />
+              {completed.map((book, i) => (
+                <Animate key={book.id} delay={i * 100}>
+                  <BookCard
+                    id={book.id}
+                    title={book.title}
+                    author={book.author}
+                    genre={book.genre}
+                    coverImageUrl={book.coverImageUrl}
+                    ratingClub={book.ratingClub}
+                    status={book.status}
+                    variant="dark"
+                  />
+                </Animate>
               ))}
             </div>
           ) : (

@@ -7,3 +7,4 @@ export { ToastProvider, useToast } from "./toast.tsx";
 export { SectionLabel } from "./section-label.tsx";
 export { Pill } from "./pill.tsx";
 export { HeroIllustration } from "./hero-illustration.tsx";
+export { Animate } from "./animate.tsx";
