@@ -6,6 +6,7 @@ import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 import { useSignalReady } from "@hooks/use-initial-load.ts";
+import { SectionLabel } from "@/components/ui/section-label.tsx";
 
 const genres = [
   "fantasy",
@@ -44,11 +45,18 @@ export const Books = () => {
 
   return (
     <div>
-      <section className="bg-bg-light py-12 md:py-16">
-        <div className="max-w-6xl mx-auto px-5">
-          <h1 className="text-4xl md:text-6xl font-bold text-text-primary mb-8 hero-fade-in">
-            <em className="italic text-accent">discover</em>
-          </h1>
+      <section className="gradient-mesh-light noise-overlay py-12 md:py-20">
+        <div className="max-w-6xl mx-auto px-5 relative z-[2]">
+          <div className="hero-fade-in mb-8 md:mb-12">
+            <SectionLabel>our library</SectionLabel>
+            <h1 className="text-4xl md:text-6xl font-bold text-text-primary mt-3 leading-tight">
+              every book we've <em className="italic text-accent">read.</em>
+            </h1>
+            <p className="text-text-secondary leading-relaxed md:text-lg mt-4 max-w-lg">
+              rated, discussed, and documented — from first page to final
+              verdict. pick a genre or browse them all.
+            </p>
+          </div>
 
           <div className="hero-fade-in-delay-1">
             <button
@@ -122,7 +130,7 @@ export const Books = () => {
               ))}
             </div>
           ) : (
-            <p className="text-center text-text-muted-dark py-16">no books found.</p>
+            <p className="text-center text-text-muted-dark py-16">no books match this filter.</p>
           )}
         </div>
       </section>
