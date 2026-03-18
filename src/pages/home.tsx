@@ -11,14 +11,23 @@ import { StatCounter } from "@/components/ui/stat-counter.tsx";
 import { BookCover } from "@/components/ui/book-cover.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 import { BookShelf } from "@/components/ui/book-shelf.tsx";
+import { useSignalReady } from "@hooks/use-initial-load.ts";
 
 export const Home = () => {
   const { books: currentlyReading, loading: loadingCurrent } = useBooks({ status: "currently-reading" });
   const { books: completed, loading: loadingCompleted } = useBooks({ status: "completed", limit: 4 });
-  const { books: allCompleted } = useBooks({ status: "completed" });
+  const { books: allCompleted, loading: loadingAll } = useBooks({ status: "completed" });
+
+  const signalReady = useSignalReady();
 
   const currentBook = currentlyReading[0];
   const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!loadingCurrent && !loadingCompleted && !loadingAll) {
+      signalReady();
+    }
+  }, [loadingCurrent, loadingCompleted, loadingAll, signalReady]);
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

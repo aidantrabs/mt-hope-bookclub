@@ -2,8 +2,12 @@ import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
+import { useSignalReadyOnMount } from "@hooks/use-initial-load.ts";
 
-export const Contact = () => (
+export const Contact = () => {
+  useSignalReadyOnMount();
+
+  return (
   <div>
     <section className="bg-bg-light py-16 md:py-24">
       <div className="max-w-3xl mx-auto px-5">
@@ -73,4 +77,5 @@ export const Contact = () => (
       </Animate>
     </section>
   </div>
-);
+  );
+};

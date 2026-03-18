@@ -2,8 +2,10 @@ import { useState, useEffect, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@hooks/use-auth.ts";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
+import { useSignalReadyOnMount } from "@hooks/use-initial-load.ts";
 
 export const Login = () => {
+  useSignalReadyOnMount();
   const { user, loading: authLoading, signIn } = useAuth();
   const navigate = useNavigate();
 

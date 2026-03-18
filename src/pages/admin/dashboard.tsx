@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "@lib/firebase.ts";
@@ -6,6 +6,7 @@ import { useBooks } from "@hooks/use-books.ts";
 import { useAuth } from "@hooks/use-auth.ts";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { useToast } from "@/components/ui/toast.tsx";
+import { useSignalReady } from "@hooks/use-initial-load.ts";
 
 const statusStyles: Record<string, string> = {
   "currently-reading": "bg-highlight/15 text-highlight",
@@ -17,7 +18,12 @@ export const Dashboard = () => {
   const { books, loading, error } = useBooks();
   const { signOut } = useAuth();
   const { toast } = useToast();
+  const signalReady = useSignalReady();
   const [deleting, setDeleting] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!loading) signalReady();
+  }, [loading, signalReady]);
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
 
   const handleDelete = async (id: string) => {

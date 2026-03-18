@@ -2,8 +2,12 @@ import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
+import { useSignalReadyOnMount } from "@hooks/use-initial-load.ts";
 
-export const About = () => (
+export const About = () => {
+  useSignalReadyOnMount();
+
+  return (
     <div>
       <section className="gradient-mesh-light noise-overlay py-16 md:py-24">
         <div className="max-w-5xl mx-auto px-5 relative z-[2]">
@@ -86,4 +90,5 @@ export const About = () => (
         </div>
       </section>
     </div>
-);
+  );
+};

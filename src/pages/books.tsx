@@ -1,13 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useBooks } from "@hooks/use-books.ts";
 import { BookCard } from "@/components/ui/book-card.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
+import { useSignalReady } from "@hooks/use-initial-load.ts";
 
 export const Books = () => {
   const { books, loading, error } = useBooks();
+  const signalReady = useSignalReady();
+
+  useEffect(() => {
+    if (!loading) signalReady();
+  }, [loading, signalReady]);
   const [genreFilter, setGenreFilter] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
 

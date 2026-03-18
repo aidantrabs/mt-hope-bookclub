@@ -1,17 +1,43 @@
+import { useState, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./header.tsx";
 import { Footer } from "./footer.tsx";
+import { Logo } from "@/components/ui/logo.tsx";
+import {
+  InitialLoadContext,
+  useInitialLoadProvider,
+} from "@hooks/use-initial-load.ts";
 
 export const PageWrapper = () => {
   const { pathname } = useLocation();
+  const ctx = useInitialLoadProvider();
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    if (!ctx.ready) return;
+    const timer = setTimeout(() => setShowLoader(false), 400);
+    return () => clearTimeout(timer);
+  }, [ctx.ready]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-bg-light text-text-primary">
-      <Header />
-      <main key={pathname} className="flex-1 page-transition">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+    <InitialLoadContext.Provider value={ctx}>
+      <div className="min-h-screen flex flex-col bg-bg-light text-text-primary">
+        {showLoader && (
+          <div
+            className={`loading-screen ${ctx.ready ? "loading-screen-exit" : ""}`}
+          >
+            <Logo className="w-16 h-16 loading-logo" />
+            <p className="text-xs uppercase tracking-widest font-medium text-text-secondary mt-4">
+              loading
+            </p>
+          </div>
+        )}
+        <Header />
+        <main key={pathname} className="flex-1 page-transition">
+          <Outlet />
+        </main>
+        <Footer />
+      </div>
+    </InitialLoadContext.Provider>
   );
 };

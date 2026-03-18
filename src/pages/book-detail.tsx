@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useBook } from "@hooks/use-book.ts";
 import { StarRating } from "@/components/ui/star-rating.tsx";
@@ -9,6 +10,7 @@ import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 import { BookCover } from "@/components/ui/book-cover.tsx";
+import { useSignalReady } from "@hooks/use-initial-load.ts";
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString("en-TT", { month: "short", day: "numeric", year: "numeric" });
@@ -16,6 +18,11 @@ const formatDate = (d: Date) =>
 export const BookDetail = () => {
   const { id } = useParams();
   const { book, loading, error } = useBook(id);
+  const signalReady = useSignalReady();
+
+  useEffect(() => {
+    if (!loading) signalReady();
+  }, [loading, signalReady]);
 
   if (loading) return <LoadingSpinner />;
 

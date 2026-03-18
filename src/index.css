@@ -104,6 +104,35 @@ body {
   }
 }
 
+/* initial loading screen */
+@keyframes loadingPulse {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+@keyframes loadingFadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-light);
+}
+
+.loading-screen-exit {
+  animation: loadingFadeOut 0.4s ease-out forwards;
+}
+
+.loading-logo {
+  animation: loadingPulse 1.8s ease-in-out infinite;
+}
+
 /* noise texture overlay */
 .noise-overlay {
   position: relative;

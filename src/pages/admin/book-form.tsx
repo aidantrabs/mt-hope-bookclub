@@ -8,6 +8,7 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { StarPicker } from "@/components/ui/star-picker.tsx";
 import { useToast } from "@/components/ui/toast.tsx";
 import { searchBookCover } from "@lib/open-library.ts";
+import { useSignalReadyOnMount } from "@hooks/use-initial-load.ts";
 
 type FieldErrors = Record<string, string>;
 
@@ -34,6 +35,7 @@ const defaultForm = () => ({
 type FormData = ReturnType<typeof defaultForm>;
 
 export const BookForm = () => {
+  useSignalReadyOnMount();
   const { id } = useParams();
   const isEdit = Boolean(id);
   const navigate = useNavigate();
