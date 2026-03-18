@@ -1,31 +1,31 @@
 import { useEffect, useRef } from "react";
 
 export const useAnimate = <T extends HTMLElement = HTMLDivElement>() => {
-  const ref = useRef<T>(null);
+    const ref = useRef<T>(null);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      el.classList.add("animate-visible");
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry?.isIntersecting) {
-          el.classList.add("animate-visible");
-          observer.unobserve(el);
+        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReduced) {
+            el.classList.add("animate-visible");
+            return;
         }
-      },
-      { threshold: 0.1 },
-    );
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry?.isIntersecting) {
+                    el.classList.add("animate-visible");
+                    observer.unobserve(el);
+                }
+            },
+            { threshold: 0.1 },
+        );
 
-  return ref;
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, []);
+
+    return ref;
 };
