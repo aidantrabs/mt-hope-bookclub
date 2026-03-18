@@ -7,6 +7,17 @@ import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 import { useSignalReady } from "@hooks/use-initial-load.ts";
 
+const genres = [
+  "fantasy",
+  "thriller",
+  "romance",
+  "mystery",
+  "sci-fi",
+  "contemporary",
+  "horror",
+  "non-fiction",
+];
+
 export const Books = () => {
   const { books, loading, error } = useBooks();
   const signalReady = useSignalReady();
@@ -17,8 +28,9 @@ export const Books = () => {
   const [genreFilter, setGenreFilter] = useState<string | null>(null);
   const [filtersOpen, setFiltersOpen] = useState(false);
 
-  const genres = [...new Set(books.map((b) => b.genre))];
-  const filtered = genreFilter ? books.filter((b) => b.genre === genreFilter) : books;
+  const filtered = genreFilter
+    ? books.filter((b) => b.genre.toLowerCase().includes(genreFilter))
+    : books;
 
   if (loading) return <LoadingSpinner />;
 
@@ -38,55 +50,53 @@ export const Books = () => {
             <em className="italic text-accent">discover</em>
           </h1>
 
-          {genres.length > 1 && (
-            <div className="hero-fade-in-delay-1">
-              <button
-                onClick={() => setFiltersOpen(!filtersOpen)}
-                className="md:hidden flex items-center gap-2 text-xs uppercase tracking-widest font-medium text-text-secondary mb-3"
+          <div className="hero-fade-in-delay-1">
+            <button
+              onClick={() => setFiltersOpen(!filtersOpen)}
+              className="md:hidden flex items-center gap-2 text-xs uppercase tracking-widest font-medium text-text-secondary mb-3"
+            >
+              <span>filter by genre</span>
+              <svg
+                width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                className={`transition-transform ${filtersOpen ? "rotate-180" : ""}`}
+                aria-hidden="true"
               >
-                <span>filter by genre</span>
-                <svg
-                  width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-                  className={`transition-transform ${filtersOpen ? "rotate-180" : ""}`}
-                  aria-hidden="true"
-                >
-                  <polyline points="6 9 12 15 18 9" />
-                </svg>
-                {genreFilter && (
-                  <span className="bg-accent text-white text-xs px-1.5 py-0.5 rounded-full normal-case tracking-normal">
-                    {genreFilter.split("/")[0]!.trim().toLowerCase()}
-                  </span>
-                )}
-              </button>
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+              {genreFilter && (
+                <span className="bg-accent text-white text-xs px-1.5 py-0.5 rounded-full normal-case tracking-normal">
+                  {genreFilter}
+                </span>
+              )}
+            </button>
 
-              <div className={`flex-wrap gap-2 ${filtersOpen ? "flex" : "hidden md:flex"}`}>
+            <div className={`flex-wrap gap-2 ${filtersOpen ? "flex" : "hidden md:flex"}`}>
+              <button
+                onClick={() => setGenreFilter(null)}
+                className={`rounded-full px-4 py-1.5 text-xs uppercase tracking-wider font-medium transition-colors ${
+                  !genreFilter
+                    ? "bg-text-primary text-bg-light"
+                    : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"
+                }`}
+              >
+                all
+              </button>
+              {genres.map((genre) => (
                 <button
-                  onClick={() => setGenreFilter(null)}
+                  key={genre}
+                  onClick={() => { setGenreFilter(genre); setFiltersOpen(false); }}
                   className={`rounded-full px-4 py-1.5 text-xs uppercase tracking-wider font-medium transition-colors ${
-                    !genreFilter
+                    genreFilter === genre
                       ? "bg-text-primary text-bg-light"
                       : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"
                   }`}
                 >
-                  all
+                  {genre}
                 </button>
-                {genres.map((genre) => (
-                  <button
-                    key={genre}
-                    onClick={() => { setGenreFilter(genre); setFiltersOpen(false); }}
-                    className={`rounded-full px-4 py-1.5 text-xs uppercase tracking-wider font-medium transition-colors ${
-                      genreFilter === genre
-                        ? "bg-text-primary text-bg-light"
-                        : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"
-                    }`}
-                  >
-                    {genre}
-                  </button>
-                ))}
-              </div>
+              ))}
             </div>
-          )}
+          </div>
         </div>
       </section>
 
