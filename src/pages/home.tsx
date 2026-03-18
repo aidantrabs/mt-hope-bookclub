@@ -3,6 +3,7 @@ import { useBooks } from "@hooks/use-books.ts";
 import { BookCard } from "@/components/ui/book-card.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { SectionLabel } from "@/components/ui/section-label.tsx";
+import { HeroIllustration } from "@/components/ui/hero-illustration.tsx";
 
 export const Home = () => {
   const { books: currentlyReading, loading: loadingCurrent } = useBooks({ status: "currently-reading" });
@@ -30,37 +31,48 @@ export const Home = () => {
             </Link>
           </div>
 
-          {loadingCurrent ? (
-            <LoadingSpinner />
-          ) : currentBook ? (
-            <Link to={`/discover/${currentBook.id}`} className="group flex justify-center">
-              <div className="relative w-56 md:w-64">
-                <img
-                  src={currentBook.coverImageUrl || "https://placehold.co/300x450/e5e2dd/1a2332?text=no+cover"}
-                  alt={`cover of ${currentBook.title}`}
-                  className="w-full rounded-2xl shadow-2xl rotate-2 group-hover:rotate-0 transition-transform duration-500 ease-out"
-                />
-                <span className="absolute -bottom-3 -right-3 bg-highlight text-white text-[10px] uppercase tracking-[0.15em] font-semibold px-4 py-2 rounded-full shadow-lg">
-                  reading now
-                </span>
-              </div>
-            </Link>
-          ) : null}
+          <div className="flex justify-center">
+            <HeroIllustration className="w-72 md:w-80 h-auto" />
+          </div>
         </div>
       </section>
 
-      {currentBook && (
-        <section className="bg-bg-light pb-16">
+      {loadingCurrent ? (
+        <LoadingSpinner />
+      ) : currentBook ? (
+        <section className="bg-bg-light pb-20">
           <div className="max-w-6xl mx-auto px-5">
-            <div className="max-w-lg border-t border-border pt-8">
-              <SectionLabel>currently reading</SectionLabel>
-              <h2 className="font-display text-2xl text-text-primary mt-2 mb-1">{currentBook.title}</h2>
-              <p className="text-sm text-text-secondary mb-3">{currentBook.author}</p>
-              <p className="text-sm text-text-secondary leading-relaxed line-clamp-2">{currentBook.summary}</p>
-            </div>
+            <Link
+              to={`/discover/${currentBook.id}`}
+              className="group block bg-bg-card rounded-2xl border border-border p-6 md:p-8 md:flex md:items-center md:gap-8 hover:shadow-lg transition-shadow duration-300"
+            >
+              <div className="w-28 md:w-36 shrink-0 mb-4 md:mb-0">
+                <img
+                  src={currentBook.coverImageUrl || "https://placehold.co/200x300/e5e2dd/1a2332?text=no+cover"}
+                  alt={`cover of ${currentBook.title}`}
+                  className="w-full rounded-xl shadow-md group-hover:shadow-lg transition-shadow"
+                />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="bg-highlight text-white text-[10px] uppercase tracking-[0.15em] font-semibold px-3 py-1 rounded-full">
+                    reading now
+                  </span>
+                </div>
+                <h2 className="font-display text-2xl text-text-primary mb-1 group-hover:text-accent transition-colors">
+                  {currentBook.title}
+                </h2>
+                <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-3">
+                  {currentBook.author}
+                </p>
+                <p className="text-sm text-text-secondary leading-relaxed line-clamp-2 max-w-lg">
+                  {currentBook.summary}
+                </p>
+              </div>
+            </Link>
           </div>
         </section>
-      )}
+      ) : null}
 
       <section className="bg-bg-dark py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-5">
