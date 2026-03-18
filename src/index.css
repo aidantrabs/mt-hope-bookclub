@@ -1,18 +1,32 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: "Lora", serif;
-  --font-sans: "Source Sans 3", sans-serif;
-  --color-cream: #fdf6ec;
-  --color-brown: #3d2c2e;
-  --color-brown-light: #6b5658;
-  --color-brown-muted: #8a7a6c;
-  --color-terracotta: #c26a4a;
-  --color-terracotta-dark: #a8583d;
-  --color-green: #2d5a3d;
-  --color-gold: #d4a853;
-  --color-sand: #e8dcc8;
-  --color-warm-white: #fef9f0;
+  --font-display: "DM Serif Display", serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+
+  --color-bg-light: #f8f7f4;
+  --color-bg-dark: #1a2332;
+  --color-bg-card: #ffffff;
+  --color-bg-card-dark: #223044;
+
+  --color-text-primary: #1a2332;
+  --color-text-secondary: #6b7280;
+  --color-text-on-dark: #f0eff0;
+  --color-text-muted-dark: #94a3b8;
+
+  --color-accent: #c47d6a;
+  --color-accent-hover: #b06a57;
+  --color-accent-soft: #f0ddd7;
+
+  --color-highlight: #6b8f7b;
+  --color-highlight-soft: #e2ede6;
+
+  --color-border: #e5e2dd;
+  --color-border-dark: #2d3d52;
+
+  --color-star: #d4a853;
+  --color-recommend-yes: #6b8f7b;
+  --color-recommend-no: #c47d6a;
 }
 
 @keyframes slideUp {
@@ -26,15 +40,26 @@
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 body {
-  font-family: var(--font-sans);
-  color: var(--color-brown);
-  background-color: var(--color-cream);
+  font-family: var(--font-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-light);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background-color: var(--color-gold);
-  color: var(--color-brown);
+  background-color: var(--color-accent-soft);
+  color: var(--color-text-primary);
 }
