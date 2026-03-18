@@ -106,10 +106,10 @@ export const BookDetail = () => {
         </div>
       </section>
 
-      <WaveDivider className="h-12 md:h-20" />
-      <section className="gradient-mesh-dark noise-overlay ambient-dots relative py-16 md:py-24">
+      <section className="gradient-mesh-dark noise-overlay ambient-dots relative pb-16 md:pb-24">
+        <WaveDivider fill="var(--color-bg-light)" flip className="h-12 md:h-20" />
         <AmbientDots />
-        <div className="max-w-4xl mx-auto px-5 relative z-[2]">
+        <div className="max-w-4xl mx-auto px-5 relative z-[2] pt-10 md:pt-16">
           {book.discussionHighlights.length > 0 && (
             <Animate className="mb-14">
               <SectionLabel dark>discussion highlights</SectionLabel>

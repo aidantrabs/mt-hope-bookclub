@@ -4,6 +4,7 @@ import { BookCard } from "@/components/ui/book-card.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
+import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 
 export const Books = () => {
   const { books, loading, error } = useBooks();
@@ -83,9 +84,10 @@ export const Books = () => {
         </div>
       </section>
 
-      <WaveDivider className="h-12 md:h-20" />
-      <section className="bg-bg-dark py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-5">
+      <section className="gradient-mesh-dark noise-overlay ambient-dots relative pb-16 md:pb-24">
+        <WaveDivider fill="var(--color-bg-light)" flip className="h-12 md:h-20" />
+        <AmbientDots />
+        <div className="max-w-6xl mx-auto px-5 relative z-[2] pt-10 md:pt-16">
           {filtered.length > 0 ? (
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {filtered.map((book, i) => (

@@ -1,6 +1,7 @@
 import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
+import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 
 export const About = () => (
   <div>
@@ -33,9 +34,10 @@ export const About = () => (
       </div>
     </section>
 
-    <WaveDivider className="h-12 md:h-20" />
-    <section className="bg-bg-dark py-16 md:py-24">
-      <div className="max-w-3xl mx-auto px-5 text-center">
+    <section className="gradient-mesh-dark noise-overlay ambient-dots relative pb-16 md:pb-24">
+      <WaveDivider fill="var(--color-bg-light)" flip className="h-12 md:h-20" />
+      <AmbientDots />
+      <div className="max-w-3xl mx-auto px-5 text-center relative z-[2] pt-10 md:pt-16">
         <Animate>
           <SectionLabel dark>follow along</SectionLabel>
           <p className="text-text-muted-dark mt-3 mb-8 max-w-md mx-auto leading-relaxed">

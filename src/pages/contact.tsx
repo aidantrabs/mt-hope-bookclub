@@ -1,6 +1,7 @@
 import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
+import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 
 export const Contact = () => (
   <div>
@@ -53,10 +54,11 @@ export const Contact = () => (
       </div>
     </section>
 
-    <WaveDivider className="h-12 md:h-20" />
-    <section className="bg-bg-dark py-14 md:py-20">
+    <section className="gradient-mesh-dark noise-overlay ambient-dots relative pb-14 md:pb-20">
+      <WaveDivider fill="var(--color-bg-light)" flip className="h-12 md:h-20" />
+      <AmbientDots />
       <Animate>
-        <div className="max-w-3xl mx-auto px-5 text-center">
+        <div className="max-w-3xl mx-auto px-5 text-center relative z-[2] pt-8 md:pt-12">
           <SectionLabel dark>prefer to message us?</SectionLabel>
           <p className="text-text-muted-dark mt-3 mb-6 max-w-md mx-auto leading-relaxed">
             drop us an email and we'll get back to you.

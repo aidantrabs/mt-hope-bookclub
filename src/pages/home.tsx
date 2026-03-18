@@ -85,12 +85,10 @@ export const Home = () => {
           </div>
         </div>
 
-        <div className="absolute bottom-0 left-0 w-full">
-          <WaveDivider className="h-28 md:h-40" />
-        </div>
       </section>
 
-      <section className="gradient-mesh-dark noise-overlay ambient-dots relative pt-6 md:pt-8 pb-14 md:pb-20">
+      <section className="gradient-mesh-dark noise-overlay ambient-dots relative pb-14 md:pb-20">
+        <WaveDivider fill="var(--color-bg-light)" flip className="h-28 md:h-40" />
         <AmbientDots />
         <div className="max-w-6xl mx-auto px-5 relative z-[2]">
           {allCompleted.length > 0 && (
