@@ -59,9 +59,9 @@ export const BookCard = ({
         }`}>
           {title}
         </h3>
-        <div className="mt-auto pt-2 flex items-center justify-between">
+        <div className="mt-auto pt-2 flex flex-col gap-2">
           <StarRating rating={ratingClub} size={12} />
-          <span className={`rounded-full px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] font-semibold ${
+          <span className={`self-start rounded-full px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] font-semibold truncate max-w-full ${
             isDark ? "bg-highlight/15 text-highlight-soft" : "bg-highlight-soft text-highlight"
           }`}>
             {genre.split("/")[0]!.trim().toLowerCase()}

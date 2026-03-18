@@ -13,38 +13,49 @@ export const Home = () => {
 
   return (
     <div>
-      <section className="bg-bg-light py-20 md:py-28">
-        <div className="max-w-6xl mx-auto px-5 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-          <div>
-            <SectionLabel>trinidad & tobago</SectionLabel>
-            <h1 className="font-display text-5xl md:text-7xl text-text-primary mt-3 mb-6 leading-[1.05]">
-              mt. hope<br />book club
-            </h1>
-            <p className="text-base text-text-secondary max-w-sm mb-10 leading-relaxed">
-              a community of readers discovering one book at a time. we read, we discuss, we disagree — that's the best part.
-            </p>
+      <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center bg-bg-light overflow-hidden">
+        <HeroIllustration className="absolute w-[480px] md:w-[560px] h-auto opacity-[0.07] pointer-events-none select-none" />
+
+        <div className="relative z-10 text-center px-5 py-20 max-w-2xl mx-auto">
+          <SectionLabel>trinidad & tobago</SectionLabel>
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl text-text-primary mt-4 mb-6 leading-[1.02]">
+            mt. hope<br />book club
+          </h1>
+          <p className="text-base md:text-lg text-text-secondary max-w-md mx-auto mb-10 leading-relaxed">
+            turning pages. exploring worlds. a community of readers discovering one book at a time.
+          </p>
+          <div className="flex items-center justify-center gap-4">
             <Link
               to="/discover"
-              className="inline-block bg-accent text-white rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors"
+              className="bg-accent text-white rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors"
             >
               discover our reads
             </Link>
+            <Link
+              to="/about"
+              className="border border-text-primary text-text-primary rounded-full px-6 py-3 text-sm font-semibold uppercase tracking-[0.1em] hover:bg-text-primary hover:text-bg-light transition-colors"
+            >
+              about us
+            </Link>
           </div>
+        </div>
 
-          <div className="flex justify-center">
-            <HeroIllustration className="w-72 md:w-80 h-auto" />
-          </div>
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-secondary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className="opacity-40">
+            <polyline points="6 9 12 15 18 9" />
+          </svg>
         </div>
       </section>
 
       {loadingCurrent ? (
         <LoadingSpinner />
       ) : currentBook ? (
-        <section className="bg-bg-light pb-20">
+        <section className="bg-bg-light py-16">
           <div className="max-w-6xl mx-auto px-5">
+            <SectionLabel>currently reading</SectionLabel>
             <Link
               to={`/discover/${currentBook.id}`}
-              className="group block bg-bg-card rounded-2xl border border-border p-6 md:p-8 md:flex md:items-center md:gap-8 hover:shadow-lg transition-shadow duration-300"
+              className="group block bg-bg-card rounded-2xl border border-border p-6 md:p-8 md:flex md:items-center md:gap-8 mt-5 hover:shadow-lg transition-shadow duration-300"
             >
               <div className="w-28 md:w-36 shrink-0 mb-4 md:mb-0">
                 <img
@@ -54,11 +65,9 @@ export const Home = () => {
                 />
               </div>
               <div>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="bg-highlight text-white text-[10px] uppercase tracking-[0.15em] font-semibold px-3 py-1 rounded-full">
-                    reading now
-                  </span>
-                </div>
+                <span className="inline-block bg-highlight text-white text-[10px] uppercase tracking-[0.15em] font-semibold px-3 py-1 rounded-full mb-3">
+                  reading now
+                </span>
                 <h2 className="font-display text-2xl text-text-primary mb-1 group-hover:text-accent transition-colors">
                   {currentBook.title}
                 </h2>

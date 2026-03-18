@@ -6,6 +6,7 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 export const Books = () => {
   const { books, loading, error } = useBooks();
   const [genreFilter, setGenreFilter] = useState<string | null>(null);
+  const [filtersOpen, setFiltersOpen] = useState(false);
 
   const genres = [...new Set(books.map((b) => b.genre))];
   const filtered = genreFilter ? books.filter((b) => b.genre === genreFilter) : books;
@@ -29,30 +30,52 @@ export const Books = () => {
           </h1>
 
           {genres.length > 1 && (
-            <div className="flex flex-wrap gap-2">
+            <div>
               <button
-                onClick={() => setGenreFilter(null)}
-                className={`rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold transition-colors ${
-                  !genreFilter
-                    ? "bg-text-primary text-bg-light"
-                    : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"
-                }`}
+                onClick={() => setFiltersOpen(!filtersOpen)}
+                className="md:hidden flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-3"
               >
-                all
+                <span>filter by genre</span>
+                <svg
+                  width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+                  className={`transition-transform ${filtersOpen ? "rotate-180" : ""}`}
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+                {genreFilter && (
+                  <span className="bg-accent text-white text-[9px] px-1.5 py-0.5 rounded-full normal-case tracking-normal">
+                    {genreFilter.split("/")[0]!.trim().toLowerCase()}
+                  </span>
+                )}
               </button>
-              {genres.map((genre) => (
+
+              <div className={`flex-wrap gap-2 ${filtersOpen ? "flex" : "hidden md:flex"}`}>
                 <button
-                  key={genre}
-                  onClick={() => setGenreFilter(genre)}
+                  onClick={() => setGenreFilter(null)}
                   className={`rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold transition-colors ${
-                    genreFilter === genre
+                    !genreFilter
                       ? "bg-text-primary text-bg-light"
                       : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"
                   }`}
                 >
-                  {genre}
+                  all
                 </button>
-              ))}
+                {genres.map((genre) => (
+                  <button
+                    key={genre}
+                    onClick={() => { setGenreFilter(genre); setFiltersOpen(false); }}
+                    className={`rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold transition-colors ${
+                      genreFilter === genre
+                        ? "bg-text-primary text-bg-light"
+                        : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"
+                    }`}
+                  >
+                    {genre}
+                  </button>
+                ))}
+              </div>
             </div>
           )}
         </div>
