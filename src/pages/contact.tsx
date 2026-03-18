@@ -73,8 +73,10 @@ export const Contact = () => {
         <AmbientDots />
         <div className="max-w-4xl mx-auto px-5 relative z-[2] pt-10 md:pt-16">
           <Animate>
-            <SectionLabel dark>prefer to message us?</SectionLabel>
-            <p className="text-text-muted-dark mt-3 mb-6 max-w-md leading-relaxed">
+            <h2 className="text-2xl md:text-4xl font-bold text-text-on-dark leading-tight">
+              prefer to <em className="italic text-accent">write?</em>
+            </h2>
+            <p className="text-text-muted-dark mt-3 mb-8 max-w-md leading-relaxed">
               drop us an email and we'll get back to you.
             </p>
             <a

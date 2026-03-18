@@ -92,10 +92,12 @@ export const About = () => {
         <AmbientDots />
         <div className="max-w-4xl mx-auto px-5 relative z-[2] pt-10 md:pt-16">
           <Animate>
-            <SectionLabel dark>follow along</SectionLabel>
-            <p className="text-text-muted-dark mt-3 mb-6 max-w-md leading-relaxed">
-              we post recaps, reading updates, and the occasional hot take. come
-              say hi.
+            <h2 className="text-2xl md:text-4xl font-bold text-text-on-dark leading-tight">
+              follow <em className="italic text-accent">along.</em>
+            </h2>
+            <p className="text-text-muted-dark mt-3 mb-8 max-w-md leading-relaxed">
+              recaps, reading updates, and the occasional hot take — we share it
+              all on instagram.
             </p>
             <a
               href="https://www.instagram.com/mt.hopebookclub"
