@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StarRating } from "./star-rating.tsx";
+import { BookCover } from "./book-cover.tsx";
 import { useTilt } from "@hooks/use-tilt.ts";
 
 type BookCardProps = {
@@ -12,8 +13,6 @@ type BookCardProps = {
   status: string;
   variant?: "light" | "dark";
 };
-
-const fallbackCover = "https://placehold.co/200x300/e5e2dd/1a2332?text=no+cover";
 
 export const BookCard = ({
   id,
@@ -40,11 +39,10 @@ export const BookCard = ({
       }`}
     >
       <div className="aspect-[2/3] overflow-hidden relative shrink-0">
-        <img
-          src={coverImageUrl || fallbackCover}
+        <BookCover
+          src={coverImageUrl}
           alt={`cover of ${title}`}
-          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
-          onError={(e) => { (e.target as HTMLImageElement).src = fallbackCover; }}
+          className="w-full h-full group-hover:scale-[1.03] transition-transform duration-500 ease-out"
         />
         {status === "currently-reading" && (
           <span className="absolute top-3 left-3 bg-highlight text-white text-xs uppercase tracking-wider font-medium px-2.5 py-1 rounded-full">

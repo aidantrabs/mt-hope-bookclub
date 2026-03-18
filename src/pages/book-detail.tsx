@@ -8,8 +8,7 @@ import { Pill } from "@/components/ui/pill.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
-
-const fallbackCover = "https://placehold.co/300x450/e5e2dd/1a2332?text=no+cover";
+import { BookCover } from "@/components/ui/book-cover.tsx";
 
 const formatDate = (d: Date) =>
   d.toLocaleDateString("en-TT", { month: "short", day: "numeric", year: "numeric" });
@@ -44,14 +43,11 @@ export const BookDetail = () => {
           </nav>
 
           <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 mb-16">
-            <div className="aspect-[2/3] rounded-2xl overflow-hidden shadow-lg hero-fade-in">
-              <img
-                src={book.coverImageUrl || fallbackCover}
-                alt={`cover of ${book.title}`}
-                className="w-full h-full object-cover"
-                onError={(e) => { (e.target as HTMLImageElement).src = fallbackCover; }}
-              />
-            </div>
+            <BookCover
+              src={book.coverImageUrl}
+              alt={`cover of ${book.title}`}
+              className="aspect-[2/3] rounded-2xl shadow-lg hero-fade-in"
+            />
 
             <div className="flex flex-col justify-center">
               <div className="flex flex-wrap items-center gap-2 mb-4 hero-fade-in-delay-1">

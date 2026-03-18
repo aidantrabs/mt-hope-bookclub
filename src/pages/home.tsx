@@ -8,6 +8,7 @@ import { HeroIllustration } from "@/components/ui/hero-illustration.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { StatCounter } from "@/components/ui/stat-counter.tsx";
+import { BookCover } from "@/components/ui/book-cover.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 
 export const Home = () => {
@@ -112,10 +113,10 @@ export const Home = () => {
                 className="glow-border group block bg-bg-card-dark/60 backdrop-blur-sm rounded-2xl p-5 md:p-6 md:flex md:items-center md:gap-6 mt-4 hover:bg-bg-card-dark/80 transition-colors duration-300"
               >
                 <div className="w-20 md:w-28 shrink-0 mb-3 md:mb-0">
-                  <img
-                    src={currentBook.coverImageUrl || "https://placehold.co/200x300/e5e2dd/1a2332?text=no+cover"}
+                  <BookCover
+                    src={currentBook.coverImageUrl}
                     alt={`cover of ${currentBook.title}`}
-                    className="w-full rounded-lg shadow-md"
+                    className="w-full aspect-[2/3] rounded-lg shadow-md"
                   />
                 </div>
                 <div>
