@@ -17,7 +17,7 @@ export const BookShelf = ({ books }: BookShelfProps) => {
   const doubled = [...books, ...books];
 
   return (
-    <div className="w-full overflow-hidden mask-fade-x">
+    <div className="w-full overflow-x-clip overflow-y-visible mask-fade-x pt-4">
       <div className="book-shelf-track">
         {doubled.map((book, i) => (
           <Link
