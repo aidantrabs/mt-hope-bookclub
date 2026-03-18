@@ -39,7 +39,7 @@ export const About = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 mb-16 md:mb-24">
             <Animate>
-              <span className="block text-5xl font-bold text-accent/15 leading-none mb-2">
+              <span className="block text-5xl font-bold text-accent/25 leading-none mb-2">
                 01
               </span>
               <p className="text-text-primary leading-relaxed">
@@ -48,7 +48,7 @@ export const About = () => {
               </p>
             </Animate>
             <Animate delay={100}>
-              <span className="block text-5xl font-bold text-accent/15 leading-none mb-2">
+              <span className="block text-5xl font-bold text-accent/25 leading-none mb-2">
                 02
               </span>
               <p className="text-text-primary leading-relaxed">
@@ -57,7 +57,7 @@ export const About = () => {
               </p>
             </Animate>
             <Animate delay={200}>
-              <span className="block text-5xl font-bold text-accent/15 leading-none mb-2">
+              <span className="block text-5xl font-bold text-accent/25 leading-none mb-2">
                 03
               </span>
               <p className="text-text-primary leading-relaxed">

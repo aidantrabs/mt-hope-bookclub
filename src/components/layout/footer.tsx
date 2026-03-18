@@ -57,10 +57,10 @@ export const Footer = () => (
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-2 pt-5">
-          <p className="text-xs text-text-muted-dark/50">
+          <p className="text-xs text-text-muted-dark/70">
             &copy; {new Date().getFullYear()} mt. hope book club
           </p>
-          <Link to="/admin" className="text-xs text-text-muted-dark/40 hover:text-text-muted-dark transition-colors">
+          <Link to="/admin" className="text-xs text-text-muted-dark/60 hover:text-text-muted-dark transition-colors">
             admin
           </Link>
         </div>

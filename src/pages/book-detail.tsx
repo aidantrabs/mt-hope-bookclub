@@ -43,9 +43,9 @@ export const BookDetail = () => {
         <div className="max-w-4xl mx-auto px-5 relative z-[2]">
           <nav className="text-xs uppercase tracking-widest font-medium text-text-secondary mb-10 flex items-center gap-2 hero-fade-in">
             <Link to="/" className="hover:text-text-primary transition-colors">home</Link>
-            <span className="text-border">/</span>
+            <span className="text-text-secondary">/</span>
             <Link to="/discover" className="hover:text-text-primary transition-colors">discover</Link>
-            <span className="text-border">/</span>
+            <span className="text-text-secondary">/</span>
             <span className="text-text-primary truncate">{book.title.toLowerCase()}</span>
           </nav>
 
