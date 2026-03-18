@@ -1,13 +1,17 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { Header } from "./header.tsx";
 import { Footer } from "./footer.tsx";
 
-export const PageWrapper = () => (
-  <div className="min-h-screen flex flex-col bg-bg-light text-text-primary">
-    <Header />
-    <main className="flex-1">
-      <Outlet />
-    </main>
-    <Footer />
-  </div>
-);
+export const PageWrapper = () => {
+  const { pathname } = useLocation();
+
+  return (
+    <div className="min-h-screen flex flex-col bg-bg-light text-text-primary">
+      <Header />
+      <main key={pathname} className="flex-1 page-transition">
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
+  );
+};

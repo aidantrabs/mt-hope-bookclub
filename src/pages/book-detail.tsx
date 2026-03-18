@@ -1,12 +1,13 @@
 import { useParams, Link } from "react-router-dom";
 import { useBook } from "@hooks/use-book.ts";
 import { StarRating } from "@/components/ui/star-rating.tsx";
-import { QuoteBlock } from "@/components/ui/quote-block.tsx";
+import { QuoteCarousel } from "@/components/ui/quote-carousel.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { Pill } from "@/components/ui/pill.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
+import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 
 const fallbackCover = "https://placehold.co/300x450/e5e2dd/1a2332?text=no+cover";
 
@@ -32,8 +33,8 @@ export const BookDetail = () => {
 
   return (
     <div>
-      <section className="bg-bg-light py-12 md:py-16">
-        <div className="max-w-4xl mx-auto px-5">
+      <section className="gradient-mesh-light noise-overlay py-12 md:py-16">
+        <div className="max-w-4xl mx-auto px-5 relative z-[2]">
           <nav className="text-xs uppercase tracking-widest font-medium text-text-secondary mb-10 flex items-center gap-2 hero-fade-in">
             <Link to="/" className="hover:text-text-primary transition-colors">home</Link>
             <span className="text-border">/</span>
@@ -77,13 +78,13 @@ export const BookDetail = () => {
 
           <Animate>
             <div className="grid grid-cols-2 gap-5 mb-16">
-              <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border text-center">
+              <div className="glass-light rounded-2xl p-6 md:p-8 text-center">
                 <SectionLabel>our rating</SectionLabel>
                 <div className="mt-3">
                   <StarRating rating={book.ratingClub} size={18} />
                 </div>
               </div>
-              <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border text-center">
+              <div className="glass-light rounded-2xl p-6 md:p-8 text-center">
                 <SectionLabel>goodreads</SectionLabel>
                 <div className="mt-3">
                   <StarRating rating={book.ratingGoodreads} size={18} />
@@ -98,13 +99,7 @@ export const BookDetail = () => {
                 <h2 className="text-xl md:text-2xl font-semibold text-text-primary mb-6">
                   favourite quotes
                 </h2>
-                <div className="space-y-4">
-                  {book.favoriteQuotes.map((quote, i) => (
-                    <Animate key={i} delay={i * 100}>
-                      <QuoteBlock quote={quote} />
-                    </Animate>
-                  ))}
-                </div>
+                <QuoteCarousel quotes={book.favoriteQuotes} />
               </div>
             </Animate>
           )}
@@ -112,8 +107,9 @@ export const BookDetail = () => {
       </section>
 
       <WaveDivider className="h-12 md:h-20" />
-      <section className="bg-bg-dark py-16 md:py-24">
-        <div className="max-w-4xl mx-auto px-5">
+      <section className="gradient-mesh-dark noise-overlay ambient-dots relative py-16 md:py-24">
+        <AmbientDots />
+        <div className="max-w-4xl mx-auto px-5 relative z-[2]">
           {book.discussionHighlights.length > 0 && (
             <Animate className="mb-14">
               <SectionLabel dark>discussion highlights</SectionLabel>

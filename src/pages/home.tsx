@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useBooks } from "@hooks/use-books.ts";
 import { BookCard } from "@/components/ui/book-card.tsx";
@@ -6,30 +7,64 @@ import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { HeroIllustration } from "@/components/ui/hero-illustration.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
+import { StatCounter } from "@/components/ui/stat-counter.tsx";
+import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 
 export const Home = () => {
   const { books: currentlyReading, loading: loadingCurrent } = useBooks({ status: "currently-reading" });
   const { books: completed, loading: loadingCompleted } = useBooks({ status: "completed", limit: 4 });
+  const { books: allCompleted } = useBooks({ status: "completed" });
 
   const currentBook = currentlyReading[0];
+  const heroRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        if (heroRef.current) {
+          heroRef.current.style.setProperty("--scroll-y", String(window.scrollY));
+        }
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const avgRating =
+    allCompleted.length > 0
+      ? allCompleted.reduce((sum, b) => sum + b.ratingClub, 0) / allCompleted.length
+      : 0;
+
+  const totalQuotes = allCompleted.reduce((sum, b) => sum + (b.favoriteQuotes?.length ?? 0), 0);
 
   return (
     <div>
-      <section className="relative bg-bg-light overflow-hidden pb-0 min-h-[calc(100vh-4rem)] flex flex-col">
-        <div className="max-w-6xl mx-auto px-5 pt-4 md:pt-6 pb-36 md:pb-44 flex-1 flex flex-col justify-start">
+      <section
+        ref={heroRef}
+        className="parallax-hero gradient-mesh-light noise-overlay relative overflow-hidden pb-0 min-h-[calc(100vh-4rem)] flex flex-col"
+      >
+        <div className="max-w-6xl mx-auto px-5 pt-4 md:pt-6 pb-36 md:pb-44 flex-1 flex flex-col justify-start relative z-[2]">
           <div className="flex flex-col items-center text-center">
-            <div className="hero-fade-in">
+            <div className="hero-fade-in parallax-layer-slow">
               <HeroIllustration className="w-72 md:w-96 h-auto mb-4" />
             </div>
 
-            <div className="hero-fade-in-delay-1">
+            <div className="hero-fade-in-delay-1 parallax-layer-fast">
               <SectionLabel>trinidad & tobago · est. 2025</SectionLabel>
               <h1 className="text-4xl md:text-5xl font-bold text-text-primary mt-3 mb-4 leading-tight">
                 mt. hope book club
               </h1>
             </div>
 
-            <p className="text-base text-text-secondary max-w-md mb-6 leading-relaxed hero-fade-in-delay-2">
+            <p className="text-base text-text-secondary max-w-md mb-6 leading-relaxed hero-fade-in-delay-2 parallax-layer-fast">
               turning pages. exploring worlds. a community of readers discovering one book at a time.
             </p>
 
@@ -55,8 +90,20 @@ export const Home = () => {
         </div>
       </section>
 
-      <section className="bg-bg-dark pt-6 md:pt-8 pb-14 md:pb-20">
-        <div className="max-w-6xl mx-auto px-5">
+      <section className="gradient-mesh-dark noise-overlay ambient-dots relative pt-6 md:pt-8 pb-14 md:pb-20">
+        <AmbientDots />
+        <div className="max-w-6xl mx-auto px-5 relative z-[2]">
+          {allCompleted.length > 0 && (
+            <Animate className="mb-14">
+              <div className="max-w-4xl mx-auto py-8 md:py-12">
+                <div className="grid grid-cols-3 gap-6">
+                  <StatCounter value={allCompleted.length} label="books read" />
+                  <StatCounter value={avgRating} label="avg club rating" suffix="★" decimals={1} />
+                  <StatCounter value={totalQuotes} label="favourite quotes" />
+                </div>
+              </div>
+            </Animate>
+          )}
           {loadingCurrent ? (
             <LoadingSpinner />
           ) : currentBook ? (
@@ -64,7 +111,7 @@ export const Home = () => {
               <SectionLabel dark>currently reading</SectionLabel>
               <Link
                 to={`/discover/${currentBook.id}`}
-                className="group block bg-bg-card-dark rounded-2xl border border-border-dark p-5 md:p-6 md:flex md:items-center md:gap-6 mt-4 hover:bg-bg-card-dark/80 transition-colors duration-300"
+                className="glow-border group block bg-bg-card-dark/60 backdrop-blur-sm rounded-2xl p-5 md:p-6 md:flex md:items-center md:gap-6 mt-4 hover:bg-bg-card-dark/80 transition-colors duration-300"
               >
                 <div className="w-20 md:w-28 shrink-0 mb-3 md:mb-0">
                   <img

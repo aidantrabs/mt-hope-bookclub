@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { StarRating } from "./star-rating.tsx";
+import { useTilt } from "@hooks/use-tilt.ts";
 
 type BookCardProps = {
   id: string;
@@ -25,14 +26,17 @@ export const BookCard = ({
   variant = "light",
 }: BookCardProps) => {
   const isDark = variant === "dark";
+  const { ref, style } = useTilt(10);
 
   return (
     <Link
       to={`/discover/${id}`}
-      className={`group rounded-2xl overflow-hidden flex flex-col h-full transition-all duration-200 ${
+      ref={ref as React.Ref<HTMLAnchorElement>}
+      style={style}
+      className={`group rounded-2xl overflow-hidden flex flex-col h-full ${
         isDark
           ? "bg-bg-card-dark hover:bg-bg-card-dark/80"
-          : "bg-bg-card border border-border hover:-translate-y-1 hover:shadow-lg"
+          : "bg-bg-card border border-border hover:shadow-lg"
       }`}
     >
       <div className="aspect-[2/3] overflow-hidden relative shrink-0">
