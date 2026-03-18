@@ -1,5 +1,6 @@
 import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
+import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 
 export const About = () => (
   <div>
@@ -32,6 +33,7 @@ export const About = () => (
       </div>
     </section>
 
+    <WaveDivider className="h-12 md:h-20" />
     <section className="bg-bg-dark py-16 md:py-24">
       <div className="max-w-3xl mx-auto px-5 text-center">
         <Animate>

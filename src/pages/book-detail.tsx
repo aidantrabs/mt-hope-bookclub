@@ -6,6 +6,7 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { Pill } from "@/components/ui/pill.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
+import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 
 const fallbackCover = "https://placehold.co/300x450/e5e2dd/1a2332?text=no+cover";
 
@@ -110,6 +111,7 @@ export const BookDetail = () => {
         </div>
       </section>
 
+      <WaveDivider className="h-12 md:h-20" />
       <section className="bg-bg-dark py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-5">
           {book.discussionHighlights.length > 0 && (

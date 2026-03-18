@@ -3,6 +3,7 @@ import { useBooks } from "@hooks/use-books.ts";
 import { BookCard } from "@/components/ui/book-card.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
+import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 
 export const Books = () => {
   const { books, loading, error } = useBooks();
@@ -82,6 +83,7 @@ export const Books = () => {
         </div>
       </section>
 
+      <WaveDivider className="h-12 md:h-20" />
       <section className="bg-bg-dark py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-5">
           {filtered.length > 0 ? (

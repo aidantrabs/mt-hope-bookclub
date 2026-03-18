@@ -5,6 +5,7 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { HeroIllustration } from "@/components/ui/hero-illustration.tsx";
 import { Animate } from "@/components/ui/animate.tsx";
+import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 
 export const Home = () => {
   const { books: currentlyReading, loading: loadingCurrent } = useBooks({ status: "currently-reading" });
@@ -49,17 +50,9 @@ export const Home = () => {
           </div>
         </div>
 
-        <svg
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          className="absolute bottom-0 left-0 w-full h-28 md:h-40"
-          aria-hidden="true"
-        >
-          <path
-            d="M0,40 C240,100 480,0 720,60 C960,120 1200,20 1440,80 L1440,120 L0,120 Z"
-            fill="var(--color-bg-dark)"
-          />
-        </svg>
+        <div className="absolute bottom-0 left-0 w-full">
+          <WaveDivider className="h-28 md:h-40" />
+        </div>
       </section>
 
       <section className="bg-bg-dark pt-6 md:pt-8 pb-14 md:pb-20">
