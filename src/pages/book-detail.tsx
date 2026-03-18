@@ -20,10 +20,14 @@ export const BookDetail = () => {
     const signalReady = useSignalReady();
 
     useEffect(() => {
-        if (!loading) signalReady();
+        if (!loading) {
+            signalReady();
+        }
     }, [loading, signalReady]);
 
-    if (loading) return <LoadingSpinner />;
+    if (loading) {
+        return <LoadingSpinner />;
+    }
 
     if (error || !book) {
         return (
@@ -38,7 +42,7 @@ export const BookDetail = () => {
 
     return (
         <div>
-            <section className="gradient-mesh-light noise-overlay py-12 md:py-16">
+            <section className="gradient-mesh-light noise-overlay pt-12 md:pt-20 pb-4 md:pb-6">
                 <div className="max-w-4xl mx-auto px-5 relative z-[2]">
                     <nav className="text-xs uppercase tracking-widest font-medium text-text-secondary mb-10 flex items-center gap-2 hero-fade-in">
                         <Link to="/" className="hover:text-text-primary transition-colors">
@@ -52,7 +56,7 @@ export const BookDetail = () => {
                         <span className="text-text-primary truncate">{book.title.toLowerCase()}</span>
                     </nav>
 
-                    <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 mb-16">
+                    <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-10 mb-16 md:mb-20">
                         <BookCover
                             src={book.coverImageUrl}
                             alt={`cover of ${book.title}`}
@@ -83,25 +87,37 @@ export const BookDetail = () => {
                     </div>
 
                     <Animate>
-                        <div className="grid grid-cols-2 gap-5 mb-16">
-                            <div className="glass-light rounded-2xl p-6 md:p-8 text-center">
-                                <SectionLabel>our rating</SectionLabel>
-                                <div className="mt-3">
+                        <div className="flex flex-wrap items-center gap-x-10 gap-y-4 mb-16 md:mb-20">
+                            <div>
+                                <span className="text-xs uppercase tracking-widest font-medium text-accent">
+                                    our rating
+                                </span>
+                                <div className="mt-1.5">
                                     <StarRating rating={book.ratingClub} size={18} />
                                 </div>
                             </div>
-                            <div className="glass-light rounded-2xl p-6 md:p-8 text-center">
-                                <SectionLabel>goodreads</SectionLabel>
-                                <div className="mt-3">
+                            <div>
+                                <span className="text-xs uppercase tracking-widest font-medium text-accent">
+                                    goodreads
+                                </span>
+                                <div className="mt-1.5">
                                     <StarRating rating={book.ratingGoodreads} size={18} />
                                 </div>
+                            </div>
+                            <div>
+                                <span className="text-xs uppercase tracking-widest font-medium text-accent">
+                                    recommend
+                                </span>
+                                <p className="text-text-primary font-semibold mt-1.5">
+                                    {book.wouldRecommend ? "yes, read this!" : "not our favorite"}
+                                </p>
                             </div>
                         </div>
                     </Animate>
 
                     {book.favoriteQuotes.length > 0 && (
                         <Animate>
-                            <div className="mb-16">
+                            <div className="mb-8">
                                 <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-6">
                                     favourite <em className="italic text-accent">quotes</em>
                                 </h2>
@@ -113,19 +129,21 @@ export const BookDetail = () => {
             </section>
 
             <section className="gradient-mesh-dark noise-overlay ambient-dots relative pb-16 md:pb-24">
-                <WaveDivider fill="var(--color-bg-light)" flip className="h-12 md:h-20" />
+                <WaveDivider fill="var(--color-bg-light)" flip className="h-8 md:h-14" />
                 <AmbientDots />
-                <div className="max-w-4xl mx-auto px-5 relative z-[2] pt-10 md:pt-16">
+                <div className="max-w-4xl mx-auto px-5 relative z-[2] pt-6 md:pt-10">
                     {book.discussionHighlights.length > 0 && (
                         <Animate className="mb-14">
-                            <SectionLabel dark>discussion highlights</SectionLabel>
+                            <h2 className="text-2xl md:text-3xl font-bold text-text-on-dark mb-6">
+                                discussion <em className="italic text-accent">highlights</em>
+                            </h2>
                             <ul className="mt-5 space-y-3">
                                 {book.discussionHighlights.map((highlight, i) => (
                                     <Animate
                                         key={i}
                                         as="li"
                                         delay={i * 80}
-                                        className="bg-bg-card-dark rounded-xl p-5 border-l-3 border-accent text-text-on-dark leading-relaxed text-sm"
+                                        className="bg-bg-card-dark/80 rounded-xl p-5 border-l-3 border-accent text-text-on-dark leading-relaxed"
                                     >
                                         {highlight}
                                     </Animate>
@@ -135,37 +153,23 @@ export const BookDetail = () => {
                     )}
 
                     <Animate>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
-                            <div className="bg-bg-card-dark rounded-2xl p-6 border border-border-dark">
-                                <SectionLabel dark>fun fact</SectionLabel>
-                                <p className="text-text-on-dark leading-relaxed mt-3 text-sm">{book.funFact}</p>
-                            </div>
-                            <div className="bg-bg-card-dark rounded-2xl p-6 border border-border-dark flex flex-col items-center justify-center text-center">
-                                <SectionLabel dark>would we recommend it?</SectionLabel>
-                                <span className="text-5xl my-4">
-                                    {book.wouldRecommend ? "\uD83D\uDC4D" : "\uD83D\uDC4E"}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
+                            <div>
+                                <span className="text-xs uppercase tracking-widest font-medium text-accent">
+                                    fun fact
                                 </span>
-                                <span
-                                    className={`text-sm font-semibold rounded-full px-5 py-1.5 ${
-                                        book.wouldRecommend
-                                            ? "bg-recommend-yes/15 text-highlight-soft"
-                                            : "bg-recommend-no/15 text-accent-soft"
-                                    }`}
-                                >
-                                    {book.wouldRecommend ? "yes, read this!" : "not our favorite"}
-                                </span>
+                                <p className="text-text-on-dark leading-relaxed mt-2">{book.funFact}</p>
                             </div>
+                            {book.nextRead && (
+                                <div>
+                                    <span className="text-xs uppercase tracking-widest font-medium text-accent">
+                                        up next
+                                    </span>
+                                    <p className="text-xl font-bold text-text-on-dark mt-2">{book.nextRead}</p>
+                                </div>
+                            )}
                         </div>
                     </Animate>
-
-                    {book.nextRead && (
-                        <Animate>
-                            <div className="text-center pt-8 border-t border-border-dark">
-                                <SectionLabel dark>up next</SectionLabel>
-                                <p className="text-xl font-semibold text-text-on-dark mt-2">{book.nextRead}</p>
-                            </div>
-                        </Animate>
-                    )}
                 </div>
             </section>
         </div>
