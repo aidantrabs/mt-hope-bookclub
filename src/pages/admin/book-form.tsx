@@ -321,15 +321,15 @@ export const BookForm = () => {
 };
 
 const inputClass = (error?: string) =>
-  `w-full px-3 py-2 rounded-lg border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent ${error ? "border-red-400" : "border-border"}`;
+  `w-full px-4 py-2.5 rounded-xl border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent transition-colors ${error ? "border-red-400" : "border-border"}`;
 
 type FieldProps = { label: string; error?: string; field: string; children: React.ReactNode };
 
 const Field = ({ label, error, field, children }: FieldProps) => (
   <div data-field={field}>
-    <label className="block text-sm font-medium text-text-primary mb-1">{label}</label>
+    <label className="block text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-2">{label}</label>
     {children}
-    {error && <p className="text-red-600 text-xs mt-1">{error}</p>}
+    {error && <p className="text-red-600 text-xs mt-1.5">{error}</p>}
   </div>
 );
 

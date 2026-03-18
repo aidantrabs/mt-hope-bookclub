@@ -8,7 +8,6 @@ type BookCardProps = {
   genre: string;
   coverImageUrl: string;
   ratingClub: number;
-  dateFinalDiscussion: Date;
   status: string;
   variant?: "light" | "dark";
 };
@@ -22,7 +21,6 @@ export const BookCard = ({
   genre,
   coverImageUrl,
   ratingClub,
-  dateFinalDiscussion,
   status,
   variant = "light",
 }: BookCardProps) => {
@@ -31,44 +29,45 @@ export const BookCard = ({
   return (
     <Link
       to={`/discover/${id}`}
-      className={`group rounded-xl overflow-hidden flex flex-col transition-all duration-200 ${
+      className={`group rounded-2xl overflow-hidden flex flex-col transition-all duration-200 ${
         isDark
-          ? "bg-bg-card-dark hover:brightness-110"
-          : "bg-bg-card shadow-sm hover:-translate-y-1 hover:shadow-md"
+          ? "bg-bg-card-dark hover:bg-bg-card-dark/80"
+          : "bg-bg-card border border-border hover:-translate-y-1 hover:shadow-lg"
       }`}
     >
-      <div className="aspect-[2/3] overflow-hidden">
+      <div className="aspect-[2/3] overflow-hidden relative">
         <img
           src={coverImageUrl || fallbackCover}
           alt={`cover of ${title}`}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = fallbackCover;
-          }}
+          className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500 ease-out"
+          onError={(e) => { (e.target as HTMLImageElement).src = fallbackCover; }}
         />
+        {status === "currently-reading" && (
+          <span className="absolute top-3 left-3 bg-highlight text-white text-[10px] uppercase tracking-[0.15em] font-semibold px-2.5 py-1 rounded-full">
+            reading
+          </span>
+        )}
       </div>
-      <article className="p-4 flex flex-col flex-1">
-        <span className="text-xs uppercase tracking-[0.15em] font-medium text-text-secondary mb-1">
+      <div className="p-4 flex flex-col flex-1 gap-1">
+        <p className={`text-[10px] uppercase tracking-[0.2em] font-semibold ${
+          isDark ? "text-text-muted-dark" : "text-text-secondary"
+        }`}>
           {author}
-        </span>
-        <h3 className={`font-display text-lg font-semibold leading-tight ${
+        </p>
+        <h3 className={`font-display text-base leading-snug ${
           isDark ? "text-text-on-dark" : "text-text-primary"
         }`}>
           {title}
         </h3>
-        <div className="mt-auto pt-3 flex items-center justify-between">
-          <StarRating rating={ratingClub} />
-          <span className={`rounded-full px-2.5 py-0.5 text-xs uppercase tracking-[0.1em] font-medium ${
-            isDark
-              ? "bg-highlight/20 text-highlight-soft"
-              : "bg-highlight-soft text-highlight"
+        <div className="mt-auto pt-2 flex items-center justify-between">
+          <StarRating rating={ratingClub} size={12} />
+          <span className={`rounded-full px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] font-semibold ${
+            isDark ? "bg-highlight/15 text-highlight-soft" : "bg-highlight-soft text-highlight"
           }`}>
-            {status === "currently-reading"
-              ? "reading"
-              : genre.split("/")[0]!.trim().toLowerCase()}
+            {genre.split("/")[0]!.trim().toLowerCase()}
           </span>
         </div>
-      </article>
+      </div>
     </Link>
   );
 };

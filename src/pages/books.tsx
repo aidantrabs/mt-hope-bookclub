@@ -14,7 +14,7 @@ export const Books = () => {
 
   if (error) {
     return (
-      <div className="max-w-6xl mx-auto px-4 py-12 text-center">
+      <div className="max-w-6xl mx-auto px-5 py-16 text-center">
         <p className="text-accent">{error}</p>
       </div>
     );
@@ -23,19 +23,19 @@ export const Books = () => {
   return (
     <div>
       <section className="bg-bg-light py-12 md:py-16">
-        <div className="max-w-6xl mx-auto px-4">
-          <h1 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-6">
+        <div className="max-w-6xl mx-auto px-5">
+          <h1 className="font-display text-4xl md:text-5xl text-text-primary mb-8">
             discover
           </h1>
 
           {genres.length > 1 && (
-            <div className="flex flex-wrap gap-2 overflow-x-auto pb-2 -mb-2">
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setGenreFilter(null)}
-                className={`rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.15em] font-medium transition-colors whitespace-nowrap ${
+                className={`rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold transition-colors ${
                   !genreFilter
-                    ? "bg-accent text-white"
-                    : "border border-border text-text-secondary hover:border-accent hover:text-accent"
+                    ? "bg-text-primary text-bg-light"
+                    : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"
                 }`}
               >
                 all
@@ -44,10 +44,10 @@ export const Books = () => {
                 <button
                   key={genre}
                   onClick={() => setGenreFilter(genre)}
-                  className={`rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.15em] font-medium transition-colors whitespace-nowrap ${
+                  className={`rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold transition-colors ${
                     genreFilter === genre
-                      ? "bg-accent text-white"
-                      : "border border-border text-text-secondary hover:border-accent hover:text-accent"
+                      ? "bg-text-primary text-bg-light"
+                      : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"
                   }`}
                 >
                   {genre}
@@ -58,10 +58,10 @@ export const Books = () => {
         </div>
       </section>
 
-      <section className="bg-bg-dark py-12 md:py-16">
-        <div className="max-w-6xl mx-auto px-4">
+      <section className="bg-bg-dark py-16 md:py-24">
+        <div className="max-w-6xl mx-auto px-5">
           {filtered.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
               {filtered.map((book) => (
                 <BookCard
                   key={book.id}
@@ -71,7 +71,6 @@ export const Books = () => {
                   genre={book.genre}
                   coverImageUrl={book.coverImageUrl}
                   ratingClub={book.ratingClub}
-                  dateFinalDiscussion={book.dateFinalDiscussion}
                   status={book.status}
                   variant="dark"
                 />

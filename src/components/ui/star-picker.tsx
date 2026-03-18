@@ -3,35 +3,39 @@ type StarPickerProps = {
   onChange: (value: number) => void;
 };
 
-export const StarPicker = ({ value, onChange }: StarPickerProps) => {
-  const stars = Array.from({ length: 10 }, (_, i) => {
-    const starValue = (i + 1) * 0.5;
-    const isHalf = i % 2 === 0;
-    const filled = value >= starValue;
+const StarIcon = ({ filled, size = 28 }: { filled: boolean; size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+      fill={filled ? "var(--color-star)" : "var(--color-border)"}
+      className="transition-colors duration-100"
+    />
+  </svg>
+);
 
-    return (
-      <button
-        key={i}
-        type="button"
-        onClick={() => onChange(starValue)}
-        className={`text-2xl transition-colors cursor-pointer ${
-          filled ? "text-star" : "text-border"
-        } ${isHalf ? "-mr-1.5" : "mr-1"}`}
-        aria-label={`${starValue} stars`}
-      >
-        {isHalf ? (
-          <span className="inline-block w-3 overflow-hidden">{"\u2605"}</span>
-        ) : (
-          <span className="inline-block">{"\u2605"}</span>
-        )}
-      </button>
-    );
-  });
+export const StarPicker = ({ value, onChange }: StarPickerProps) => (
+  <div className="flex items-center gap-1">
+    <div className="flex">
+      {Array.from({ length: 10 }, (_, i) => {
+        const starValue = (i + 1) * 0.5;
+        const isLeft = i % 2 === 0;
 
-  return (
-    <div className="flex items-center">
-      <div className="flex items-center">{stars}</div>
-      <span className="ml-3 text-sm font-medium text-text-primary">{value || "\u2014"}</span>
+        return (
+          <button
+            key={i}
+            type="button"
+            onClick={() => onChange(starValue)}
+            className={`cursor-pointer hover:scale-110 transition-transform ${isLeft ? "w-3.5 overflow-hidden -mr-[2px]" : "w-3.5 overflow-hidden direction-rtl"}`}
+            style={isLeft ? {} : { direction: "rtl" }}
+            aria-label={`${starValue} stars`}
+          >
+            <StarIcon filled={value >= starValue} />
+          </button>
+        );
+      })}
     </div>
-  );
-};
+    <span className="ml-2 text-sm font-medium text-text-primary tabular-nums min-w-[2ch]">
+      {value || "\u2014"}
+    </span>
+  </div>
+);

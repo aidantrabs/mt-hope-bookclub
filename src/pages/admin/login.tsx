@@ -13,9 +13,7 @@ export const Login = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    if (!authLoading && user) {
-      navigate("/admin/dashboard", { replace: true });
-    }
+    if (!authLoading && user) navigate("/admin/dashboard", { replace: true });
   }, [authLoading, user, navigate]);
 
   if (authLoading || user) return <LoadingSpinner />;
@@ -23,15 +21,8 @@ export const Login = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError(null);
-
-    if (!email.trim()) {
-      setError("email is required.");
-      return;
-    }
-    if (!password) {
-      setError("password is required.");
-      return;
-    }
+    if (!email.trim()) { setError("email is required."); return; }
+    if (!password) { setError("password is required."); return; }
 
     setSubmitting(true);
     try {
@@ -45,47 +36,30 @@ export const Login = () => {
   };
 
   return (
-    <div className="max-w-sm mx-auto px-4 py-20">
-      <h1 className="font-display text-2xl text-text-primary mb-6 text-center">admin login</h1>
+    <div className="max-w-sm mx-auto px-5 py-24">
+      <h1 className="font-display text-2xl text-text-primary mb-8 text-center">admin login</h1>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         {error && (
-          <div className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-lg border border-red-200">
-            {error}
-          </div>
+          <div className="bg-red-50 text-red-700 text-sm px-4 py-3 rounded-xl border border-red-200">{error}</div>
         )}
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-1">email</label>
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg border border-border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-            placeholder="you@example.com"
-            autoComplete="email"
-          />
+          <label htmlFor="email" className="block text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-2">email</label>
+          <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-2.5 rounded-xl border border-border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+            placeholder="you@example.com" autoComplete="email" />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-text-primary mb-1">password</label>
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg border border-border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
-            placeholder="••••••••"
-            autoComplete="current-password"
-          />
+          <label htmlFor="password" className="block text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-2">password</label>
+          <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-2.5 rounded-xl border border-border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+            placeholder="••••••••" autoComplete="current-password" />
         </div>
 
-        <button
-          type="submit"
-          disabled={submitting}
-          className="w-full bg-accent text-white py-2.5 rounded-full font-medium text-sm uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        >
+        <button type="submit" disabled={submitting}
+          className="w-full bg-accent text-white py-3 rounded-full font-semibold text-sm uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
           {submitting ? "signing in..." : "sign in"}
         </button>
       </form>
