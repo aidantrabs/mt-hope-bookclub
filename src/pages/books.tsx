@@ -27,7 +27,7 @@ export const Books = () => {
     <div>
       <section className="bg-bg-light py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-5">
-          <h1 className="font-display text-4xl md:text-5xl text-text-primary mb-8 hero-fade-in">
+          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-8 hero-fade-in">
             discover
           </h1>
 
@@ -35,7 +35,7 @@ export const Books = () => {
             <div className="hero-fade-in-delay-1">
               <button
                 onClick={() => setFiltersOpen(!filtersOpen)}
-                className="md:hidden flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-3"
+                className="md:hidden flex items-center gap-2 text-xs uppercase tracking-widest font-medium text-text-secondary mb-3"
               >
                 <span>filter by genre</span>
                 <svg
@@ -47,7 +47,7 @@ export const Books = () => {
                   <polyline points="6 9 12 15 18 9" />
                 </svg>
                 {genreFilter && (
-                  <span className="bg-accent text-white text-[9px] px-1.5 py-0.5 rounded-full normal-case tracking-normal">
+                  <span className="bg-accent text-white text-xs px-1.5 py-0.5 rounded-full normal-case tracking-normal">
                     {genreFilter.split("/")[0]!.trim().toLowerCase()}
                   </span>
                 )}
@@ -56,7 +56,7 @@ export const Books = () => {
               <div className={`flex-wrap gap-2 ${filtersOpen ? "flex" : "hidden md:flex"}`}>
                 <button
                   onClick={() => setGenreFilter(null)}
-                  className={`rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold transition-colors ${
+                  className={`rounded-full px-4 py-1.5 text-xs uppercase tracking-wider font-medium transition-colors ${
                     !genreFilter
                       ? "bg-text-primary text-bg-light"
                       : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"
@@ -68,7 +68,7 @@ export const Books = () => {
                   <button
                     key={genre}
                     onClick={() => { setGenreFilter(genre); setFiltersOpen(false); }}
-                    className={`rounded-full px-4 py-1.5 text-[11px] uppercase tracking-[0.15em] font-semibold transition-colors ${
+                    className={`rounded-full px-4 py-1.5 text-xs uppercase tracking-wider font-medium transition-colors ${
                       genreFilter === genre
                         ? "bg-text-primary text-bg-light"
                         : "border border-border text-text-secondary hover:text-text-primary hover:border-text-primary"

@@ -24,7 +24,7 @@ export const Footer = () => (
           <div>
             <Link to="/" className="flex items-center gap-2 mb-3">
               <Logo className="w-7 h-7" />
-              <span className="font-display text-text-on-dark text-lg">mt. hope book club</span>
+              <span className="font-semibold text-text-on-dark">mt. hope book club</span>
             </Link>
             <p className="text-sm text-text-muted-dark leading-relaxed max-w-xs">
               turning pages. exploring worlds. a community of readers in trinidad & tobago.
@@ -32,7 +32,7 @@ export const Footer = () => (
           </div>
 
           <div>
-            <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-muted-dark mb-4">navigate</p>
+            <p className="text-xs uppercase tracking-widest font-medium text-text-muted-dark mb-4">navigate</p>
             <nav className="flex flex-col gap-2.5">
               <Link to="/" className="text-sm text-text-muted-dark hover:text-text-on-dark transition-colors">home</Link>
               <Link to="/discover" className="text-sm text-text-muted-dark hover:text-text-on-dark transition-colors">discover</Link>
@@ -45,7 +45,7 @@ export const Footer = () => (
           </div>
 
           <div>
-            <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-muted-dark mb-4">contact</p>
+            <p className="text-xs uppercase tracking-widest font-medium text-text-muted-dark mb-4">contact</p>
             <ul className="flex flex-col gap-2.5 text-sm text-text-muted-dark">
               <li>
                 <span className="text-text-on-dark">dominique</span> —{" "}
@@ -65,10 +65,10 @@ export const Footer = () => (
         </div>
 
         <div className="flex flex-col md:flex-row items-center justify-between gap-2 pt-5">
-          <p className="text-[11px] tracking-wide text-text-muted-dark/50">
+          <p className="text-xs text-text-muted-dark/50">
             &copy; {new Date().getFullYear()} mt. hope book club
           </p>
-          <Link to="/admin" className="text-[11px] tracking-wide text-text-muted-dark/40 hover:text-text-muted-dark transition-colors">
+          <Link to="/admin" className="text-xs text-text-muted-dark/40 hover:text-text-muted-dark transition-colors">
             admin
           </Link>
         </div>

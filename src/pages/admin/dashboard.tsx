@@ -41,9 +41,9 @@ export const Dashboard = () => {
   return (
     <div className="max-w-4xl mx-auto px-5 py-12">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="font-display text-2xl text-text-primary">dashboard</h1>
+        <h1 className="text-2xl font-bold text-text-primary">dashboard</h1>
         <div className="flex items-center gap-4">
-          <Link to="/admin/new" className="bg-accent text-white px-5 py-2 rounded-full text-sm font-semibold uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors">
+          <Link to="/admin/new" className="bg-accent text-white px-5 py-2 rounded-full text-sm font-semibold uppercase tracking-wider hover:bg-accent-hover transition-colors">
             + add book
           </Link>
           <button onClick={() => signOut()} className="text-sm text-text-secondary hover:text-text-primary transition-colors">
@@ -69,8 +69,8 @@ export const Dashboard = () => {
             <div key={book.id} className="bg-bg-card rounded-xl border border-border p-4 flex items-center gap-4">
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-0.5">
-                  <h3 className="font-display text-text-primary truncate">{book.title}</h3>
-                  <span className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase tracking-[0.1em] shrink-0 ${statusStyles[book.status] ?? "bg-border text-text-secondary"}`}>
+                  <h3 className="font-semibold text-text-primary truncate">{book.title}</h3>
+                  <span className={`text-xs px-2 py-0.5 rounded-full font-medium uppercase tracking-wider shrink-0 ${statusStyles[book.status] ?? "bg-border text-text-secondary"}`}>
                     {book.status === "currently-reading" ? "reading" : book.status}
                   </span>
                 </div>

@@ -17,7 +17,7 @@ export const Header = () => {
       <nav className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <Logo className="w-8 h-8" />
-          <span className="font-display text-lg text-text-primary">mt. hope book club</span>
+          <span className="font-semibold text-text-primary">mt. hope book club</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8" role="navigation">
@@ -27,7 +27,7 @@ export const Header = () => {
               to={link.to}
               end={link.to === "/"}
               className={({ isActive }) =>
-                `text-[11px] uppercase tracking-[0.2em] font-semibold transition-colors py-1 ${
+                `text-xs uppercase tracking-widest font-medium transition-colors py-1 ${
                   isActive
                     ? "text-text-primary border-b border-text-primary"
                     : "text-text-secondary hover:text-text-primary"
@@ -71,7 +71,7 @@ export const Header = () => {
               end={link.to === "/"}
               onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
-                `block py-2.5 text-[11px] uppercase tracking-[0.2em] font-semibold ${
+                `block py-2.5 text-xs uppercase tracking-widest font-medium ${
                   isActive ? "text-text-primary" : "text-text-secondary"
                 }`
               }

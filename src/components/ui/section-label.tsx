@@ -4,7 +4,7 @@ type SectionLabelProps = {
 };
 
 export const SectionLabel = ({ children, dark }: SectionLabelProps) => (
-  <p className={`text-[11px] uppercase tracking-[0.2em] font-semibold ${
+  <p className={`text-xs uppercase tracking-widest font-medium ${
     dark ? "text-text-muted-dark" : "text-text-secondary"
   }`}>
     {children}

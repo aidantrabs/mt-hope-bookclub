@@ -8,7 +8,7 @@ export const Contact = () => (
       <div className="max-w-3xl mx-auto px-5">
         <div className="hero-fade-in">
           <SectionLabel>reach out</SectionLabel>
-          <h1 className="font-display text-4xl md:text-5xl text-text-primary mt-3 mb-10">
+          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mt-3 mb-10">
             get in touch
           </h1>
         </div>
@@ -63,7 +63,7 @@ export const Contact = () => (
           </p>
           <a
             href="mailto:mt.hopebookclub@gmail.com"
-            className="inline-block bg-accent text-white rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors"
+            className="inline-block bg-accent text-white rounded-full px-8 py-3 text-sm font-semibold uppercase tracking-wider hover:bg-accent-hover transition-colors"
           >
             send an email
           </a>

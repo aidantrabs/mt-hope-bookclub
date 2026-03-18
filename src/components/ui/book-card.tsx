@@ -43,25 +43,25 @@ export const BookCard = ({
           onError={(e) => { (e.target as HTMLImageElement).src = fallbackCover; }}
         />
         {status === "currently-reading" && (
-          <span className="absolute top-3 left-3 bg-highlight text-white text-[10px] uppercase tracking-[0.15em] font-semibold px-2.5 py-1 rounded-full">
+          <span className="absolute top-3 left-3 bg-highlight text-white text-xs uppercase tracking-wider font-medium px-2.5 py-1 rounded-full">
             reading
           </span>
         )}
       </div>
       <div className="p-3.5 flex flex-col flex-1">
-        <p className={`text-[10px] uppercase tracking-[0.2em] font-semibold truncate ${
+        <p className={`text-xs uppercase tracking-wider font-medium truncate ${
           isDark ? "text-text-muted-dark" : "text-text-secondary"
         }`}>
           {author}
         </p>
-        <h3 className={`font-display text-[15px] leading-snug line-clamp-2 mt-0.5 ${
+        <h3 className={`text-sm font-semibold leading-snug line-clamp-2 mt-0.5 ${
           isDark ? "text-text-on-dark" : "text-text-primary"
         }`}>
           {title}
         </h3>
         <div className="mt-auto pt-2.5 flex flex-col gap-1.5">
           <StarRating rating={ratingClub} size={11} />
-          <span className={`self-start rounded-full px-2 py-0.5 text-[9px] uppercase tracking-[0.08em] font-semibold truncate max-w-full ${
+          <span className={`self-start rounded-full px-2 py-0.5 text-xs uppercase tracking-wider font-medium truncate max-w-full ${
             isDark ? "bg-highlight/15 text-highlight-soft" : "bg-highlight-soft text-highlight"
           }`}>
             {genre.split("/")[0]!.trim().toLowerCase()}

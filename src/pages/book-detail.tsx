@@ -34,7 +34,7 @@ export const BookDetail = () => {
     <div>
       <section className="bg-bg-light py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-5">
-          <nav className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-10 flex items-center gap-2 hero-fade-in">
+          <nav className="text-xs uppercase tracking-widest font-medium text-text-secondary mb-10 flex items-center gap-2 hero-fade-in">
             <Link to="/" className="hover:text-text-primary transition-colors">home</Link>
             <span className="text-border">/</span>
             <Link to="/discover" className="hover:text-text-primary transition-colors">discover</Link>
@@ -56,16 +56,16 @@ export const BookDetail = () => {
               <div className="flex flex-wrap items-center gap-2 mb-4 hero-fade-in-delay-1">
                 <Pill>{book.genre}</Pill>
                 {book.status === "currently-reading" && (
-                  <span className="rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.15em] font-semibold bg-highlight text-white">
+                  <span className="rounded-full px-3 py-1 text-xs uppercase tracking-wider font-medium bg-highlight text-white">
                     reading now
                   </span>
                 )}
               </div>
 
-              <h1 className="font-display text-3xl md:text-4xl text-text-primary mb-3 leading-tight hero-fade-in-delay-1">
+              <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-3 leading-tight hero-fade-in-delay-1">
                 {book.title}
               </h1>
-              <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-1 hero-fade-in-delay-2">
+              <p className="text-xs uppercase tracking-widest font-medium text-text-secondary mb-1 hero-fade-in-delay-2">
                 {book.author}
               </p>
               <p className="text-sm text-text-secondary mb-6 hero-fade-in-delay-2">
@@ -79,13 +79,13 @@ export const BookDetail = () => {
             <div className="grid grid-cols-2 gap-5 mb-16">
               <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border text-center">
                 <SectionLabel>our rating</SectionLabel>
-                <div className="text-xl mt-3">
+                <div className="mt-3">
                   <StarRating rating={book.ratingClub} size={18} />
                 </div>
               </div>
               <div className="bg-bg-card rounded-2xl p-6 md:p-8 border border-border text-center">
                 <SectionLabel>goodreads</SectionLabel>
-                <div className="text-xl mt-3">
+                <div className="mt-3">
                   <StarRating rating={book.ratingGoodreads} size={18} />
                 </div>
               </div>
@@ -95,7 +95,7 @@ export const BookDetail = () => {
           {book.favoriteQuotes.length > 0 && (
             <Animate>
               <div className="mb-16">
-                <h2 className="font-display text-xl md:text-2xl text-text-primary mb-6">
+                <h2 className="text-xl md:text-2xl font-semibold text-text-primary mb-6">
                   favourite quotes
                 </h2>
                 <div className="space-y-4">
@@ -120,7 +120,7 @@ export const BookDetail = () => {
               <ul className="mt-5 space-y-3">
                 {book.discussionHighlights.map((highlight, i) => (
                   <Animate key={i} as="li" delay={i * 80}
-                    className="bg-bg-card-dark rounded-xl p-5 border-l-3 border-accent text-text-on-dark leading-relaxed text-[15px]"
+                    className="bg-bg-card-dark rounded-xl p-5 border-l-3 border-accent text-text-on-dark leading-relaxed text-sm"
                   >
                     {highlight}
                   </Animate>
@@ -133,7 +133,7 @@ export const BookDetail = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-14">
               <div className="bg-bg-card-dark rounded-2xl p-6 border border-border-dark">
                 <SectionLabel dark>fun fact</SectionLabel>
-                <p className="text-text-on-dark leading-relaxed mt-3 text-[15px]">{book.funFact}</p>
+                <p className="text-text-on-dark leading-relaxed mt-3 text-sm">{book.funFact}</p>
               </div>
               <div className="bg-bg-card-dark rounded-2xl p-6 border border-border-dark flex flex-col items-center justify-center text-center">
                 <SectionLabel dark>would we recommend it?</SectionLabel>
@@ -155,7 +155,7 @@ export const BookDetail = () => {
             <Animate>
               <div className="text-center pt-8 border-t border-border-dark">
                 <SectionLabel dark>up next</SectionLabel>
-                <p className="font-display text-xl text-text-on-dark mt-2">{book.nextRead}</p>
+                <p className="text-xl font-semibold text-text-on-dark mt-2">{book.nextRead}</p>
               </div>
             </Animate>
           )}

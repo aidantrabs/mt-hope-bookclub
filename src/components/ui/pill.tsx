@@ -10,7 +10,7 @@ const variants = {
 };
 
 export const Pill = ({ children, variant = "highlight" }: PillProps) => (
-  <span className={`inline-block rounded-full px-3 py-1 text-[10px] uppercase tracking-[0.15em] font-semibold ${variants[variant]}`}>
+  <span className={`inline-block rounded-full px-3 py-1 text-xs uppercase tracking-wider font-medium ${variants[variant]}`}>
     {children}
   </span>
 );

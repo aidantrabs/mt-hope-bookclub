@@ -180,7 +180,7 @@ export const BookForm = () => {
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-12">
-      <h1 className="font-display text-2xl md:text-3xl text-text-primary mb-8">
+      <h1 className="font-bold text-2xl md:text-3xl text-text-primary mb-8">
         {isEdit ? "edit book" : "add book"}
       </h1>
 
@@ -202,7 +202,7 @@ export const BookForm = () => {
 
       <form onSubmit={handleSubmit} className="space-y-10">
         <fieldset className="space-y-4">
-          <legend className="font-display text-lg text-text-primary mb-2">basics</legend>
+          <legend className="font-bold text-lg text-text-primary mb-2">basics</legend>
           <Field label="title" error={errors.title} field="title">
             <input type="text" value={form.title} onChange={(e) => update("title", e.target.value)} onBlur={() => validateField("title")} placeholder="the alchemist" className={inputClass(errors.title)} />
           </Field>
@@ -222,7 +222,7 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-display text-lg text-text-primary mb-2">dates</legend>
+          <legend className="font-bold text-lg text-text-primary mb-2">dates</legend>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Field label="date started" error={errors.dateStarted} field="dateStarted">
               <input type="date" value={form.dateStarted} onChange={(e) => update("dateStarted", e.target.value)} className={inputClass(errors.dateStarted)} />
@@ -236,7 +236,7 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-display text-lg text-text-primary mb-2">details</legend>
+          <legend className="font-bold text-lg text-text-primary mb-2">details</legend>
           <Field label="summary" error={errors.summary} field="summary">
             <textarea value={form.summary} onChange={(e) => update("summary", e.target.value)} onBlur={() => validateField("summary")}
               onInput={(e) => { const t = e.target as HTMLTextAreaElement; t.style.height = "auto"; t.style.height = t.scrollHeight + "px"; }}
@@ -250,7 +250,7 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-display text-lg text-text-primary mb-2">ratings</legend>
+          <legend className="font-bold text-lg text-text-primary mb-2">ratings</legend>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Field label="club rating" error={errors.ratingClub} field="ratingClub">
               <StarPicker value={form.ratingClub} onChange={(v) => update("ratingClub", v)} />
@@ -262,17 +262,17 @@ export const BookForm = () => {
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-display text-lg text-text-primary mb-2">favourite quotes</legend>
+          <legend className="font-bold text-lg text-text-primary mb-2">favourite quotes</legend>
           <ListField items={form.favoriteQuotes} onChange={(items) => update("favoriteQuotes", items)} placeholder="enter a quote..." error={errors.favoriteQuotes} field="favoriteQuotes" />
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-display text-lg text-text-primary mb-2">discussion highlights</legend>
+          <legend className="font-bold text-lg text-text-primary mb-2">discussion highlights</legend>
           <ListField items={form.discussionHighlights} onChange={(items) => update("discussionHighlights", items)} placeholder="enter a highlight..." error={errors.discussionHighlights} field="discussionHighlights" />
         </fieldset>
 
         <fieldset className="space-y-4">
-          <legend className="font-display text-lg text-text-primary mb-2">extras</legend>
+          <legend className="font-bold text-lg text-text-primary mb-2">extras</legend>
           <Field label="would we recommend it?" error={errors.wouldRecommend} field="wouldRecommend">
             <div className="flex gap-3">
               <button type="button" onClick={() => update("wouldRecommend", true)}
@@ -307,7 +307,7 @@ export const BookForm = () => {
 
         <div className="flex gap-3 pt-4 border-t border-border">
           <button type="submit" disabled={submitting}
-            className="bg-accent text-white px-8 py-2.5 rounded-full font-medium text-sm uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+            className="bg-accent text-white px-8 py-2.5 rounded-full font-medium text-sm uppercase tracking-wider hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
             {submitting ? "saving..." : isEdit ? "update book" : "add book"}
           </button>
           <button type="button" onClick={() => navigate("/admin/dashboard")}
@@ -327,7 +327,7 @@ type FieldProps = { label: string; error?: string; field: string; children: Reac
 
 const Field = ({ label, error, field, children }: FieldProps) => (
   <div data-field={field}>
-    <label className="block text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-2">{label}</label>
+    <label className="block text-xs uppercase tracking-widest font-medium text-text-secondary mb-2">{label}</label>
     {children}
     {error && <p className="text-red-600 text-xs mt-1.5">{error}</p>}
   </div>

@@ -24,7 +24,7 @@ export const Home = () => {
 
             <div className="hero-fade-in-delay-1">
               <SectionLabel>trinidad & tobago · est. 2025</SectionLabel>
-              <h1 className="font-display text-4xl md:text-6xl text-text-primary mt-3 mb-4 leading-[1.08]">
+              <h1 className="text-4xl md:text-5xl font-bold text-text-primary mt-3 mb-4 leading-tight">
                 mt. hope book club
               </h1>
             </div>
@@ -36,13 +36,13 @@ export const Home = () => {
             <div className="flex items-center gap-3 hero-fade-in-delay-3">
               <Link
                 to="/discover"
-                className="bg-accent text-white rounded-full px-7 py-2.5 text-sm font-semibold uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors"
+                className="bg-accent text-white rounded-full px-7 py-2.5 text-sm font-semibold uppercase tracking-wider hover:bg-accent-hover transition-colors"
               >
                 discover our reads
               </Link>
               <Link
                 to="/about"
-                className="border border-text-primary text-text-primary rounded-full px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.1em] hover:bg-text-primary hover:text-bg-light transition-colors"
+                className="border border-text-primary text-text-primary rounded-full px-5 py-2.5 text-sm font-semibold uppercase tracking-wider hover:bg-text-primary hover:text-bg-light transition-colors"
               >
                 about us
               </Link>
@@ -74,13 +74,13 @@ export const Home = () => {
                   />
                 </div>
                 <div>
-                  <span className="inline-block bg-highlight text-white text-[10px] uppercase tracking-[0.15em] font-semibold px-3 py-1 rounded-full mb-2">
+                  <span className="inline-block bg-highlight text-white text-xs uppercase tracking-wider font-medium px-3 py-1 rounded-full mb-2">
                     reading now
                   </span>
-                  <h2 className="font-display text-xl text-text-on-dark mb-0.5 group-hover:text-accent transition-colors">
+                  <h2 className="text-xl font-semibold text-text-on-dark mb-0.5 group-hover:text-accent transition-colors">
                     {currentBook.title}
                   </h2>
-                  <p className="text-[11px] uppercase tracking-[0.2em] font-semibold text-text-muted-dark mb-2">
+                  <p className="text-xs uppercase tracking-widest font-medium text-text-muted-dark mb-2">
                     {currentBook.author}
                   </p>
                   <p className="text-sm text-text-muted-dark leading-relaxed line-clamp-2 max-w-lg">
@@ -96,7 +96,7 @@ export const Home = () => {
               <SectionLabel dark>recent reads</SectionLabel>
               <Link
                 to="/discover"
-                className="text-[11px] uppercase tracking-[0.2em] font-semibold text-accent hover:text-accent-hover transition-colors"
+                className="text-xs uppercase tracking-widest font-medium text-accent hover:text-accent-hover transition-colors"
               >
                 see all &rarr;
               </Link>

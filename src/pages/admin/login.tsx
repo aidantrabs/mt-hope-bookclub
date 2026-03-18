@@ -37,7 +37,7 @@ export const Login = () => {
 
   return (
     <div className="max-w-sm mx-auto px-5 py-24">
-      <h1 className="font-display text-2xl text-text-primary mb-8 text-center">admin login</h1>
+      <h1 className="text-2xl font-bold text-text-primary mb-8 text-center">admin login</h1>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         {error && (
@@ -45,21 +45,21 @@ export const Login = () => {
         )}
 
         <div>
-          <label htmlFor="email" className="block text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-2">email</label>
+          <label htmlFor="email" className="block text-xs uppercase tracking-widest font-medium text-text-secondary mb-2">email</label>
           <input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)}
             className="w-full px-4 py-2.5 rounded-xl border border-border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
             placeholder="you@example.com" autoComplete="email" />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-[11px] uppercase tracking-[0.2em] font-semibold text-text-secondary mb-2">password</label>
+          <label htmlFor="password" className="block text-xs uppercase tracking-widest font-medium text-text-secondary mb-2">password</label>
           <input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)}
             className="w-full px-4 py-2.5 rounded-xl border border-border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
             placeholder="••••••••" autoComplete="current-password" />
         </div>
 
         <button type="submit" disabled={submitting}
-          className="w-full bg-accent text-white py-3 rounded-full font-semibold text-sm uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+          className="w-full bg-accent text-white py-3 rounded-full font-semibold text-sm uppercase tracking-wider hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
           {submitting ? "signing in..." : "sign in"}
         </button>
       </form>

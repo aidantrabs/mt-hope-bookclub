@@ -35,7 +35,7 @@ export const StarRating = ({ rating, max = 5, size = 14 }: StarRatingProps) => {
   return (
     <span className="inline-flex items-center gap-0.5" aria-label={`${rating} out of ${max} stars`}>
       {stars}
-      <span className="ml-1.5 text-xs font-medium text-text-secondary tabular-nums">{rating}</span>
+      <span className="ml-1.5 text-xs text-text-secondary tabular-nums">{rating}</span>
     </span>
   );
 };
