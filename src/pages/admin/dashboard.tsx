@@ -8,9 +8,9 @@ import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { useToast } from "@/components/ui/toast.tsx";
 
 const statusColors: Record<string, string> = {
-  "currently-reading": "bg-green-100 text-green-800",
-  completed: "bg-gray-100 text-gray-700",
-  upcoming: "bg-blue-100 text-blue-800",
+  "currently-reading": "bg-highlight/20 text-highlight",
+  completed: "bg-border text-text-secondary",
+  upcoming: "bg-accent-soft text-accent",
 };
 
 const statusLabels: Record<string, string> = {
@@ -47,17 +47,17 @@ export const Dashboard = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 py-12">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="font-serif text-2xl md:text-3xl font-bold text-brown">dashboard</h1>
+        <h1 className="font-display text-2xl md:text-3xl text-text-primary">dashboard</h1>
         <div className="flex items-center gap-3">
           <Link
             to="/admin/new"
-            className="bg-terracotta text-white px-5 py-2 rounded-lg font-medium text-sm hover:bg-terracotta-dark transition-colors"
+            className="bg-accent text-white px-5 py-2 rounded-full font-medium text-sm uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors"
           >
             + add book
           </Link>
           <button
             onClick={() => signOut()}
-            className="text-sm text-brown-muted hover:text-brown transition-colors"
+            className="text-sm text-text-secondary hover:text-text-primary transition-colors"
           >
             sign out
           </button>
@@ -72,10 +72,10 @@ export const Dashboard = () => {
 
       {books.length === 0 ? (
         <div className="text-center py-20">
-          <p className="text-brown-light mb-4">no books yet — add your first one!</p>
+          <p className="text-text-secondary mb-4">no books yet — add your first one!</p>
           <Link
             to="/admin/new"
-            className="inline-block bg-terracotta text-white px-8 py-3 rounded-lg font-medium hover:bg-terracotta-dark transition-colors"
+            className="inline-block bg-accent text-white px-8 py-3 rounded-full font-medium hover:bg-accent-hover transition-colors"
           >
             + add book
           </Link>
@@ -85,26 +85,26 @@ export const Dashboard = () => {
           {[...currentlyReading, ...otherBooks].map((book) => (
             <div
               key={book.id}
-              className="bg-white rounded-lg border border-sand p-4 flex items-center gap-4"
+              className="bg-bg-card rounded-lg border border-border p-4 flex items-center gap-4"
             >
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="font-serif font-bold text-brown truncate">{book.title}</h3>
+                  <h3 className="font-display font-semibold text-text-primary truncate">{book.title}</h3>
                   <span
                     className={`text-xs px-2 py-0.5 rounded-full font-medium shrink-0 ${
-                      statusColors[book.status] ?? "bg-gray-100 text-gray-700"
+                      statusColors[book.status] ?? "bg-border text-text-secondary"
                     }`}
                   >
                     {statusLabels[book.status] ?? book.status}
                   </span>
                 </div>
-                <p className="text-sm text-brown-light truncate">{book.author}</p>
+                <p className="text-sm text-text-secondary truncate">{book.author}</p>
               </div>
 
               <div className="flex items-center gap-2 shrink-0">
                 <Link
                   to={`/admin/edit/${book.id}`}
-                  className="text-sm text-terracotta hover:underline px-3 py-1.5"
+                  className="text-sm text-accent hover:underline px-3 py-1.5"
                 >
                   edit
                 </Link>
@@ -113,7 +113,7 @@ export const Dashboard = () => {
                   <div className="flex items-center gap-2">
                     <button
                       onClick={() => setConfirmDelete(null)}
-                      className="text-sm px-3 py-1.5 rounded-lg bg-gray-100 text-brown hover:bg-gray-200 transition-colors font-medium"
+                      className="text-sm px-3 py-1.5 rounded-lg bg-border text-text-primary hover:bg-border/80 transition-colors font-medium"
                     >
                       cancel
                     </button>
@@ -129,7 +129,7 @@ export const Dashboard = () => {
                   <button
                     onClick={() => setConfirmDelete(book.id)}
                     disabled={deleting !== null}
-                    className="text-sm text-brown-muted hover:text-red-600 transition-colors px-3 py-1.5 disabled:opacity-50"
+                    className="text-sm text-text-secondary hover:text-red-600 transition-colors px-3 py-1.5 disabled:opacity-50"
                   >
                     delete
                   </button>

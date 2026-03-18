@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@hooks/use-auth.ts";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
@@ -12,12 +12,13 @@ export const Login = () => {
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
 
-  if (authLoading) return <LoadingSpinner />;
+  useEffect(() => {
+    if (!authLoading && user) {
+      navigate("/admin/dashboard", { replace: true });
+    }
+  }, [authLoading, user, navigate]);
 
-  if (user) {
-    navigate("/admin/dashboard", { replace: true });
-    return null;
-  }
+  if (authLoading || user) return <LoadingSpinner />;
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -45,7 +46,7 @@ export const Login = () => {
 
   return (
     <div className="max-w-sm mx-auto px-4 py-20">
-      <h1 className="font-serif text-2xl font-bold text-brown mb-6 text-center">admin login</h1>
+      <h1 className="font-display text-2xl text-text-primary mb-6 text-center">admin login</h1>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
@@ -55,30 +56,26 @@ export const Login = () => {
         )}
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-brown mb-1">
-            email
-          </label>
+          <label htmlFor="email" className="block text-sm font-medium text-text-primary mb-1">email</label>
           <input
             id="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg border border-sand bg-white text-brown focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent"
+            className="w-full px-3 py-2 rounded-lg border border-border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
             placeholder="you@example.com"
             autoComplete="email"
           />
         </div>
 
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-brown mb-1">
-            password
-          </label>
+          <label htmlFor="password" className="block text-sm font-medium text-text-primary mb-1">password</label>
           <input
             id="password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full px-3 py-2 rounded-lg border border-sand bg-white text-brown focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-transparent"
+            className="w-full px-3 py-2 rounded-lg border border-border bg-bg-card text-text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
             placeholder="••••••••"
             autoComplete="current-password"
           />
@@ -87,7 +84,7 @@ export const Login = () => {
         <button
           type="submit"
           disabled={submitting}
-          className="w-full bg-terracotta text-white py-2.5 rounded-lg font-medium hover:bg-terracotta-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full bg-accent text-white py-2.5 rounded-full font-medium text-sm uppercase tracking-[0.1em] hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {submitting ? "signing in..." : "sign in"}
         </button>
