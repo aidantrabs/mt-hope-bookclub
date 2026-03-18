@@ -15,67 +15,73 @@ export const Books = () => {
   if (error) {
     return (
       <div className="max-w-6xl mx-auto px-4 py-12 text-center">
-        <p className="text-terracotta">{error}</p>
+        <p className="text-accent">{error}</p>
       </div>
     );
   }
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-12">
-      <h1 className="font-serif text-3xl md:text-4xl font-bold text-brown mb-2">
-        our books
-      </h1>
-      <p className="text-brown-light mb-8">
-        every book we've read, discussed, and debated.
-      </p>
+    <div>
+      <section className="bg-bg-light py-12 md:py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          <h1 className="font-display text-3xl md:text-4xl font-bold text-text-primary mb-6">
+            discover
+          </h1>
 
-      {genres.length > 1 && (
-        <div className="flex flex-wrap gap-2 mb-8">
-          <button
-            onClick={() => setGenreFilter(null)}
-            className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${
-              !genreFilter
-                ? "bg-brown text-white"
-                : "bg-white text-brown-light border border-sand hover:border-terracotta"
-            }`}
-          >
-            all
-          </button>
-          {genres.map((genre) => (
-            <button
-              key={genre}
-              onClick={() => setGenreFilter(genre)}
-              className={`text-xs px-3 py-1.5 rounded-full font-medium transition-colors ${
-                genreFilter === genre
-                  ? "bg-brown text-white"
-                  : "bg-white text-brown-light border border-sand hover:border-terracotta"
-              }`}
-            >
-              {genre}
-            </button>
-          ))}
+          {genres.length > 1 && (
+            <div className="flex flex-wrap gap-2 overflow-x-auto pb-2 -mb-2">
+              <button
+                onClick={() => setGenreFilter(null)}
+                className={`rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.15em] font-medium transition-colors whitespace-nowrap ${
+                  !genreFilter
+                    ? "bg-accent text-white"
+                    : "border border-border text-text-secondary hover:border-accent hover:text-accent"
+                }`}
+              >
+                all
+              </button>
+              {genres.map((genre) => (
+                <button
+                  key={genre}
+                  onClick={() => setGenreFilter(genre)}
+                  className={`rounded-full px-4 py-1.5 text-xs uppercase tracking-[0.15em] font-medium transition-colors whitespace-nowrap ${
+                    genreFilter === genre
+                      ? "bg-accent text-white"
+                      : "border border-border text-text-secondary hover:border-accent hover:text-accent"
+                  }`}
+                >
+                  {genre}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-      )}
+      </section>
 
-      {filtered.length > 0 ? (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-          {filtered.map((book) => (
-            <BookCard
-              key={book.id}
-              id={book.id}
-              title={book.title}
-              author={book.author}
-              genre={book.genre}
-              coverImageUrl={book.coverImageUrl}
-              ratingClub={book.ratingClub}
-              dateFinalDiscussion={book.dateFinalDiscussion}
-              status={book.status}
-            />
-          ))}
+      <section className="bg-bg-dark py-12 md:py-16">
+        <div className="max-w-6xl mx-auto px-4">
+          {filtered.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {filtered.map((book) => (
+                <BookCard
+                  key={book.id}
+                  id={book.id}
+                  title={book.title}
+                  author={book.author}
+                  genre={book.genre}
+                  coverImageUrl={book.coverImageUrl}
+                  ratingClub={book.ratingClub}
+                  dateFinalDiscussion={book.dateFinalDiscussion}
+                  status={book.status}
+                  variant="dark"
+                />
+              ))}
+            </div>
+          ) : (
+            <p className="text-center text-text-muted-dark py-16">no books found.</p>
+          )}
         </div>
-      ) : (
-        <p className="text-center text-brown-light py-16">no books found.</p>
-      )}
+      </section>
     </div>
   );
 };
