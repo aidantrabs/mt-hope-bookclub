@@ -14,6 +14,15 @@ export const PageWrapper = () => {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
+    if (showLoader) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [showLoader]);
+
+  useEffect(() => {
     if (!ctx.ready) return;
     const timer = setTimeout(() => setShowLoader(false), 400);
     return () => clearTimeout(timer);
