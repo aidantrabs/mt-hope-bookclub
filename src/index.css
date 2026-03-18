@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "DM Serif Display", serif;
-  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-display: "Outfit", system-ui, sans-serif;
+  --font-body: "Outfit", system-ui, sans-serif;
 
   --color-bg-light: #f8f7f4;
   --color-bg-dark: #1a2332;
   --color-bg-card: #ffffff;
   --color-bg-card-dark: #223044;
+  --color-bg-footer: #141c28;
 
   --color-text-primary: #1a2332;
   --color-text-secondary: #6b7280;
