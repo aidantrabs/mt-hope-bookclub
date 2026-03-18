@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { Logo } from "@/components/ui/logo.tsx";
 
 const navLinks = [
   { to: "/", label: "home" },
@@ -14,8 +15,9 @@ export const Header = () => {
   return (
     <header className="bg-bg-light/90 backdrop-blur-md border-b border-border sticky top-0 z-50">
       <nav className="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-        <Link to="/" className="font-display text-lg text-text-primary">
-          mt. hope book club
+        <Link to="/" className="flex items-center gap-2">
+          <Logo className="w-8 h-8" />
+          <span className="font-display text-lg text-text-primary">mt. hope book club</span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8" role="navigation">
