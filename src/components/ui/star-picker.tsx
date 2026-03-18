@@ -15,7 +15,7 @@ export const StarPicker = ({ value, onChange }: StarPickerProps) => {
         type="button"
         onClick={() => onChange(starValue)}
         className={`text-2xl transition-colors cursor-pointer ${
-          filled ? "text-gold" : "text-sand"
+          filled ? "text-star" : "text-border"
         } ${isHalf ? "-mr-1.5" : "mr-1"}`}
         aria-label={`${starValue} stars`}
       >
@@ -31,7 +31,7 @@ export const StarPicker = ({ value, onChange }: StarPickerProps) => {
   return (
     <div className="flex items-center">
       <div className="flex items-center">{stars}</div>
-      <span className="ml-3 text-sm font-medium text-brown">{value || "\u2014"}</span>
+      <span className="ml-3 text-sm font-medium text-text-primary">{value || "\u2014"}</span>
     </div>
   );
 };

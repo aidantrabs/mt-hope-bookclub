@@ -43,9 +43,9 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 };
 
 const typeStyles: Record<ToastType, string> = {
-  success: "bg-green text-white",
+  success: "bg-highlight text-white",
   error: "bg-red-600 text-white",
-  warning: "bg-gold text-brown",
+  warning: "bg-star text-text-primary",
 };
 
 const ToastItem = ({ toast, onDismiss }: { toast: Toast; onDismiss: (id: number) => void }) => {
