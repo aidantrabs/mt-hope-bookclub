@@ -76,5 +76,4 @@ pushes to `main` trigger the ci/cd pipeline:
 2. **deploy** - builds and deploys to firebase hosting (runs after ci passes)
 
 ## license
-
-private project.
+mit
