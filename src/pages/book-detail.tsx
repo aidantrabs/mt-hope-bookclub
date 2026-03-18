@@ -59,7 +59,7 @@ export const BookDetail = () => {
                 )}
               </div>
 
-              <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-3 leading-tight hero-fade-in-delay-1">
+              <h1 className="text-3xl md:text-5xl font-bold text-text-primary mb-3 leading-tight hero-fade-in-delay-1">
                 {book.title}
               </h1>
               <p className="text-xs uppercase tracking-widest font-medium text-text-secondary mb-1 hero-fade-in-delay-2">
@@ -92,8 +92,8 @@ export const BookDetail = () => {
           {book.favoriteQuotes.length > 0 && (
             <Animate>
               <div className="mb-16">
-                <h2 className="text-xl md:text-2xl font-semibold text-text-primary mb-6">
-                  favourite quotes
+                <h2 className="text-2xl md:text-3xl font-bold text-text-primary mb-6">
+                  favourite <em className="italic text-accent">quotes</em>
                 </h2>
                 <QuoteCarousel quotes={book.favoriteQuotes} />
               </div>

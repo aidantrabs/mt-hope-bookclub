@@ -9,10 +9,10 @@ export const About = () => (
         <div className="max-w-5xl mx-auto px-5 relative z-[2]">
           <div className="hero-fade-in text-center mb-14 md:mb-20">
             <SectionLabel>who we are</SectionLabel>
-            <h1 className="text-3xl md:text-5xl font-bold text-text-primary mt-3 mb-5 leading-tight">
-              about the club
+            <h1 className="text-4xl md:text-6xl font-bold text-text-primary mt-3 mb-5 leading-tight">
+              about the <em className="italic text-accent">club</em>
             </h1>
-            <p className="text-text-secondary max-w-xl mx-auto leading-relaxed">
+            <p className="text-base md:text-lg text-text-secondary max-w-xl mx-auto leading-relaxed">
               a small community of readers in trinidad & tobago, turning pages
               and exploring worlds — one book at a time.
             </p>

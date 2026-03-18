@@ -10,6 +10,7 @@ import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { StatCounter } from "@/components/ui/stat-counter.tsx";
 import { BookCover } from "@/components/ui/book-cover.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
+import { BookShelf } from "@/components/ui/book-shelf.tsx";
 
 export const Home = () => {
   const { books: currentlyReading, loading: loadingCurrent } = useBooks({ status: "currently-reading" });
@@ -50,9 +51,9 @@ export const Home = () => {
     <div>
       <section
         ref={heroRef}
-        className="parallax-hero gradient-mesh-light noise-overlay relative overflow-hidden pb-0 min-h-[calc(100vh-4rem)] flex flex-col"
+        className="parallax-hero gradient-mesh-light noise-overlay relative overflow-hidden pb-0 flex flex-col"
       >
-        <div className="max-w-6xl mx-auto px-5 pt-4 md:pt-6 pb-36 md:pb-44 flex-1 flex flex-col justify-start relative z-[2]">
+        <div className="max-w-6xl mx-auto px-5 pt-8 md:pt-14 pb-8 md:pb-12 flex flex-col justify-start relative z-[2]">
           <div className="flex flex-col items-center text-center">
             <div className="hero-fade-in parallax-layer-slow">
               <HeroIllustration className="w-72 md:w-96 h-auto mb-4" />
@@ -60,16 +61,16 @@ export const Home = () => {
 
             <div className="hero-fade-in-delay-1 parallax-layer-fast">
               <SectionLabel>trinidad & tobago · est. 2025</SectionLabel>
-              <h1 className="text-4xl md:text-5xl font-bold text-text-primary mt-3 mb-4 leading-tight">
-                mt. hope book club
+              <h1 className="text-4xl md:text-6xl font-bold text-text-primary mt-3 mb-4 leading-tight">
+                mt. hope book <em className="italic text-accent">club</em>
               </h1>
             </div>
 
-            <p className="text-base text-text-secondary max-w-md mb-6 leading-relaxed hero-fade-in-delay-2 parallax-layer-fast">
+            <p className="text-base md:text-lg text-text-secondary max-w-lg mb-8 leading-relaxed hero-fade-in-delay-2 parallax-layer-fast">
               turning pages. exploring worlds. a community of readers discovering one book at a time.
             </p>
 
-            <div className="flex items-center gap-3 hero-fade-in-delay-3">
+            <div className="flex items-center gap-3 hero-fade-in-delay-3 mb-14 md:mb-20">
               <Link
                 to="/discover"
                 className="bg-accent text-white rounded-full px-7 py-2.5 text-sm font-semibold uppercase tracking-wider hover:bg-accent-hover transition-colors"
@@ -84,6 +85,10 @@ export const Home = () => {
               </Link>
             </div>
           </div>
+        </div>
+
+        <div className="relative z-[2] pb-32 md:pb-44 hero-fade-in-delay-3">
+          <BookShelf books={allCompleted} />
         </div>
 
       </section>

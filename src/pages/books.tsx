@@ -28,8 +28,8 @@ export const Books = () => {
     <div>
       <section className="bg-bg-light py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-5">
-          <h1 className="text-3xl md:text-4xl font-bold text-text-primary mb-8 hero-fade-in">
-            discover
+          <h1 className="text-4xl md:text-6xl font-bold text-text-primary mb-8 hero-fade-in">
+            <em className="italic text-accent">discover</em>
           </h1>
 
           {genres.length > 1 && (
