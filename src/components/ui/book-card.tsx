@@ -29,13 +29,13 @@ export const BookCard = ({
   return (
     <Link
       to={`/discover/${id}`}
-      className={`group rounded-2xl overflow-hidden flex flex-col transition-all duration-200 ${
+      className={`group rounded-2xl overflow-hidden flex flex-col h-full transition-all duration-200 ${
         isDark
           ? "bg-bg-card-dark hover:bg-bg-card-dark/80"
           : "bg-bg-card border border-border hover:-translate-y-1 hover:shadow-lg"
       }`}
     >
-      <div className="aspect-[2/3] overflow-hidden relative">
+      <div className="aspect-[2/3] overflow-hidden relative shrink-0">
         <img
           src={coverImageUrl || fallbackCover}
           alt={`cover of ${title}`}
@@ -48,20 +48,20 @@ export const BookCard = ({
           </span>
         )}
       </div>
-      <div className="p-4 flex flex-col flex-1 gap-1">
-        <p className={`text-[10px] uppercase tracking-[0.2em] font-semibold ${
+      <div className="p-3.5 flex flex-col flex-1">
+        <p className={`text-[10px] uppercase tracking-[0.2em] font-semibold truncate ${
           isDark ? "text-text-muted-dark" : "text-text-secondary"
         }`}>
           {author}
         </p>
-        <h3 className={`font-display text-base leading-snug ${
+        <h3 className={`font-display text-[15px] leading-snug line-clamp-2 mt-0.5 ${
           isDark ? "text-text-on-dark" : "text-text-primary"
         }`}>
           {title}
         </h3>
-        <div className="mt-auto pt-2 flex flex-col gap-2">
-          <StarRating rating={ratingClub} size={12} />
-          <span className={`self-start rounded-full px-2 py-0.5 text-[10px] uppercase tracking-[0.1em] font-semibold truncate max-w-full ${
+        <div className="mt-auto pt-2.5 flex flex-col gap-1.5">
+          <StarRating rating={ratingClub} size={11} />
+          <span className={`self-start rounded-full px-2 py-0.5 text-[9px] uppercase tracking-[0.08em] font-semibold truncate max-w-full ${
             isDark ? "bg-highlight/15 text-highlight-soft" : "bg-highlight-soft text-highlight"
           }`}>
             {genre.split("/")[0]!.trim().toLowerCase()}
