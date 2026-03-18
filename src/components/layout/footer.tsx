@@ -14,7 +14,9 @@ export const Footer = () => (
           <div>
             <Link to="/" className="flex items-center gap-2 mb-3">
               <Logo className="w-7 h-7" />
-              <span className="font-semibold text-text-on-dark">mt. hope book club</span>
+              <span className="text-lg font-bold text-text-on-dark">
+                mt. hope book <em className="italic text-accent">club</em>
+              </span>
             </Link>
             <p className="text-sm text-text-muted-dark leading-relaxed max-w-xs">
               turning pages. exploring worlds. a community of readers in trinidad & tobago.
