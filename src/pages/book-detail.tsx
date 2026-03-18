@@ -8,7 +8,6 @@ import { BookCover } from "@/components/ui/book-cover.tsx";
 import { LoadingSpinner } from "@/components/ui/loading-spinner.tsx";
 import { Pill } from "@/components/ui/pill.tsx";
 import { QuoteCarousel } from "@/components/ui/quote-carousel.tsx";
-import { SectionLabel } from "@/components/ui/section-label.tsx";
 import { StarRating } from "@/components/ui/star-rating.tsx";
 import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 
