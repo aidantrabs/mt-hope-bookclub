@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 const navLinks = [
   { to: "/", label: "home" },
-  { to: "/books", label: "books" },
+  { to: "/discover", label: "discover" },
   { to: "/about", label: "about" },
   { to: "/contact", label: "contact" },
 ];
@@ -12,20 +12,22 @@ export const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-cream border-b border-sand sticky top-0 z-50">
+    <header className="bg-bg-light border-b border-border sticky top-0 z-50">
       <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-        <Link to="/" className="text-brown font-serif text-xl font-bold tracking-tight">
+        <Link to="/" className="font-display text-xl text-text-primary tracking-tight">
           mt. hope book club
         </Link>
 
-        <div className="hidden md:flex gap-6" role="navigation">
+        <div className="hidden md:flex gap-8" role="navigation">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               className={({ isActive }) =>
-                `text-sm font-medium transition-colors ${
-                  isActive ? "text-terracotta" : "text-brown hover:text-terracotta"
+                `text-xs uppercase tracking-[0.15em] font-medium transition-colors ${
+                  isActive
+                    ? "text-accent border-b-2 border-accent pb-0.5"
+                    : "text-text-secondary hover:text-accent"
                 }`
               }
             >
@@ -36,7 +38,7 @@ export const Header = () => {
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          className="md:hidden text-brown p-2"
+          className="md:hidden text-text-primary p-2"
           aria-label={menuOpen ? "close menu" : "open menu"}
           aria-expanded={menuOpen}
         >
@@ -56,15 +58,15 @@ export const Header = () => {
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden border-t border-sand bg-cream px-4 pb-4" role="navigation">
+        <div className="md:hidden border-t border-border bg-bg-light px-4 pb-4" role="navigation">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
               to={link.to}
               onClick={() => setMenuOpen(false)}
               className={({ isActive }) =>
-                `block py-3 text-sm font-medium border-b border-sand last:border-0 ${
-                  isActive ? "text-terracotta" : "text-brown"
+                `block py-3 text-xs uppercase tracking-[0.15em] font-medium border-b border-border last:border-0 ${
+                  isActive ? "text-accent" : "text-text-primary"
                 }`
               }
             >
