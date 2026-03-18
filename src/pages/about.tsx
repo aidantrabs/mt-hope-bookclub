@@ -4,68 +4,108 @@ import { WaveDivider } from "@/components/ui/wave-divider.tsx";
 import { AmbientDots } from "@/components/ui/ambient-dots.tsx";
 import { useSignalReadyOnMount } from "@hooks/use-initial-load.ts";
 
+const genres = [
+  "fantasy",
+  "thriller",
+  "romance",
+  "mystery",
+  "sci-fi",
+  "contemporary",
+  "horror",
+  "non-fiction",
+];
+
 export const About = () => {
   useSignalReadyOnMount();
 
   return (
     <div>
-      <section className="gradient-mesh-light noise-overlay py-16 md:py-24">
+      <section className="gradient-mesh-light noise-overlay py-20 md:py-32">
         <div className="max-w-5xl mx-auto px-5 relative z-[2]">
-          <div className="hero-fade-in text-center mb-14 md:mb-20">
+          <div className="hero-fade-in text-center mb-16 md:mb-28">
             <SectionLabel>who we are</SectionLabel>
-            <h1 className="text-4xl md:text-6xl font-bold text-text-primary mt-3 mb-5 leading-tight">
+            <h1 className="text-4xl md:text-6xl font-bold text-text-primary mt-3 mb-6 leading-tight">
               about the <em className="italic text-accent">club</em>
             </h1>
-            <p className="text-base md:text-lg text-text-secondary max-w-xl mx-auto leading-relaxed">
-              a small community of readers in trinidad & tobago, turning pages
-              and exploring worlds — one book at a time.
-            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-24">
+          <div className="max-w-3xl mx-auto mb-20 md:mb-28">
             <Animate>
-              <div className="glass-light rounded-2xl p-6 md:p-8">
-                <span className="text-2xl mb-3 block">&#128214;</span>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-text-primary mb-2">
-                  the mission
-                </h3>
-                <p className="text-text-secondary leading-relaxed text-sm">
-                  we come together to explore stories across every genre — from
-                  fantasy and literary fiction to romance and thrillers — and
-                  have honest, sometimes heated, always fun conversations about
-                  the books we read.
+              <p className="text-xl md:text-3xl font-bold text-text-primary leading-snug mb-8 text-center md:text-left">
+                founded by dominique & mohith — two UWI medical sciences
+                students who really like{" "}
+                <em className="italic text-accent">reading.</em>
+              </p>
+            </Animate>
+            <Animate delay={100}>
+              <div className="w-12 h-px bg-accent mx-auto md:mx-0 mb-8" />
+            </Animate>
+            <Animate delay={150}>
+              <p className="text-text-secondary leading-relaxed md:text-lg text-center md:text-left">
+                mt. hope book club is a community of readers based in trinidad &
+                tobago. we explore stories across every genre and have honest,
+                sometimes heated, always fun conversations about the books we
+                read. all readers are welcome — you don't need to be a UWI
+                student to join.
+              </p>
+            </Animate>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12 md:gap-y-20 max-w-4xl mx-auto mb-20 md:mb-28">
+            <Animate>
+              <div>
+                <span className="text-xs uppercase tracking-widest font-medium text-accent">
+                  01 — rhythm
+                </span>
+                <p className="text-text-primary leading-relaxed mt-3 md:text-lg">
+                  we pick a new book every few weeks, read at our own pace, and
+                  meet up to talk it through. sometimes we agree. sometimes we
+                  don't. that's the best part.
                 </p>
               </div>
             </Animate>
             <Animate delay={100}>
-              <div className="glass-light rounded-2xl p-6 md:p-8">
-                <span className="text-2xl mb-3 block">&#127793;</span>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-text-primary mb-2">
-                  how it started
-                </h3>
-                <p className="text-text-secondary leading-relaxed text-sm">
-                  we started as a group of friends who wanted to read more
-                  intentionally and hold each other accountable. what we didn't
-                  expect was how much the discussions would change the way we see
-                  the books — and each other.
+              <div>
+                <span className="text-xs uppercase tracking-widest font-medium text-accent">
+                  02 — the discussions
+                </span>
+                <p className="text-text-primary leading-relaxed mt-3 md:text-lg">
+                  every book gets a full discussion — ratings, favourite quotes,
+                  hot takes, and the occasional argument. we track it all so we
+                  can look back and remember why a book hit different.
                 </p>
               </div>
             </Animate>
             <Animate delay={200}>
-              <div className="glass-light rounded-2xl p-6 md:p-8">
-                <span className="text-2xl mb-3 block">&#128172;</span>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-text-primary mb-2">
-                  how it works
-                </h3>
-                <p className="text-text-secondary leading-relaxed text-sm">
-                  we typically pick a new book every few weeks, read at our own
-                  pace, and meet up to talk it through. sometimes we agree.
-                  sometimes we don't. that's the best part.
+              <div>
+                <span className="text-xs uppercase tracking-widest font-medium text-accent">
+                  03 — open doors
+                </span>
+                <p className="text-text-primary leading-relaxed mt-3 md:text-lg">
+                  whether you've read a hundred books or you're just getting
+                  started, you're welcome here. all you need is curiosity and
+                  something to say.
                 </p>
               </div>
             </Animate>
+            <Animate delay={300}>
+              <div>
+                <span className="text-xs uppercase tracking-widest font-medium text-accent">
+                  04 — what we read
+                </span>
+                <div className="flex flex-wrap gap-2 mt-3">
+                  {genres.map((genre) => (
+                    <span
+                      key={genre}
+                      className="rounded-full px-3.5 py-1 text-xs uppercase tracking-wider font-medium bg-highlight-soft text-highlight"
+                    >
+                      {genre}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Animate>
           </div>
-
         </div>
       </section>
 
