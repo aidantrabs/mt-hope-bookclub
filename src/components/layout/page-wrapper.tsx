@@ -27,6 +27,7 @@ export const PageWrapper = () => {
         return () => clearTimeout(timer);
     }, [ctx.ready]);
 
+    // biome-ignore lint/correctness/useExhaustiveDependencies: intentionally scroll to top on route change
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [pathname]);
