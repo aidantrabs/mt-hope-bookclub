@@ -27,6 +27,10 @@ export const PageWrapper = () => {
         return () => clearTimeout(timer);
     }, [ctx.ready]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [pathname]);
+
     return (
         <InitialLoadContext.Provider value={ctx}>
             <div className="min-h-screen flex flex-col bg-bg-light text-text-primary">
